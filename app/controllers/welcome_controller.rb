@@ -1,7 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-  	 @music = Scrobbler::User.new('reganhsu')
-
+  	 @music = Scrobbler::User.delay.new('reganhsu')
   end
 
 end

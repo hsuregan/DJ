@@ -40,6 +40,6 @@ gem 'spring',        group: :development
 
 gem 'scrobbler'
 gem 'delayed_job_active_record'
-
+gem 'daemon-spawn'
 
 
