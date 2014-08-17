@@ -1,3 +1,35 @@
+<script>
+$(document).ready(function() {
+  var replacementContent = function() {
+    $.ajax( {
+     type : 'GET',
+     url : '#item_path',
+     dataType : 'html',
+     success : function(data) {
+         $('#refreshable').html(data);
+     },
+
+  error: function(XMLHttpRequest, testStatus, errorThrown) {
+     alert('Error!');
+   }
+
+   });
+
+}
+setInterval( function() {
+  $("#refreshable").load(location.href+" #refreshable>*", "");
+}, 5000);
+});
+</script>
+
 <h1>Currently Playing</h1>
-<h3>"<%= @music.recent_tracks.first.name %>"</h3>
-<h3>by: <%= @music.recent_tracks.first.artist %></h3>
+
+<div id = "refreshable">
+
+<table>
+<tr><td>"<%= @item.name %>"</td></tr>
+<tr><td>Artist: <%=@item.artist %></td></tr>
+<tr><td>Album: <%=@item.album %></tr>
+</table>
+
+</div>
