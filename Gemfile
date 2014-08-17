@@ -39,5 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'scrobbler'
+gem 'delayed_job_active_record'
+
 
 
