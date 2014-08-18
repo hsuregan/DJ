@@ -41,5 +41,5 @@ gem 'spring',        group: :development
 gem 'scrobbler'
 gem 'delayed_job_active_record'
 gem 'daemon-spawn'
-
+gem 'lastfm', '~> 1.25.0'
 
