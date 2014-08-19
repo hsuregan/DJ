@@ -22,14 +22,43 @@ setInterval( function() {
 });
 </script>
 
-<h1>Currently Playing</h1>
 
 <div id = "refreshable">
 
+<!-- Regan's Radio Show -->
+<h1>Currently Playing</h1>
 <table>
 <tr><td>"<%= @item.name %>"</td></tr>
 <tr><td>Artist: <%=@item.artist %></td></tr>
+
+<% if @item.album != "" %>
 <tr><td>Album: <%=@item.album %></tr>
+<%end %>
+
 </table>
 
+<p></p>
+
+<!-- Ucla's Radio -->
+<h1>Currently Playing On UCLARadio</h1>
+<table>
+<tr><td>"<%= @item_ucla.name %>"</td></tr>
+<tr><td>Artist: <%=@item_ucla.artist %></td></tr>
+
+<% if @item_ucla.album != "" %>
+<tr><td>Album: <%=@item_ucla.album %></tr>
+<%end %>
+
+</table>
+
+<p></p>
+
+
+<h1>Recent Tracks</h1>
+<table>
+<% @recent_tracks.each do |t|%>
+<tr><td> <%= t.created_at.strftime('%l:%M %p %b, %d: ') %>
+  "<%=t.title%>" by <b><%=t.artist %></b> </td></tr>
+<% end %>
+</table>
 </div>
