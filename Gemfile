@@ -42,5 +42,6 @@ gem 'scrobbler'
 gem 'delayed_job_active_record'
 gem 'daemon-spawn'
 gem 'lastfm', '~> 1.25.0'
+gem 'itunes', '~> 0.6.0'
 
 
