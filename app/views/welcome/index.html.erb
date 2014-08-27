@@ -21,29 +21,42 @@ setInterval( function() {
 }, 10000);
 });
 </script>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Abel|Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic|Droid+Sans+Mono|Source+Code+Pro:200,300,400,500,600,700,900|Exo:100,400|Cantarell:400,700' rel='stylesheet' type='text/css'>
+</head>
 
-
+<style>
+*
+{
+font-family: 'Source Code Pro';
+}
+</style>
 <div id = "refreshable">
 
 <!-- Regan's Radio Show -->
+<div id ="outer" style = "width: 100%;">
+<center style = "width: 200px; margin: 0 auto; line-height: 200%">Currently Playing</center>
 
+<div id="inner" style = "width: 100px; margin: 0 auto;">
 <% if @item_array_size != 0 %>
-<img src=<%= @item_album_artwork.first.artwork_url100 %> style="position: absolute">
+<img src=<%= @item_album_artwork.first.artwork_url100 %>>
 <% end %>
+</div>
+<div id= "info" style = "line-height: 50%">
+<center>
+  <p>"<%= @track.title %>"</p>
+  <p>Artist - <%=@track.artist %></p>
+  <% if @track.album != "" %>
+  <p>Album - <%= @track.album %></p>
+  <%end %>
+</center>
+</div>
 
-<table style = "margin-left: 100px; height: 105px">
-<tr><td><b>Currently Playing</b>
-</td></tr>
-<tr><td>"<%= @track.title %>"</td></tr>
-<tr><td>Artist: <%=@track.artist %></td></tr>
-
-<% if @track.album != "" %>
-<tr><td>Album: <%=@track.album %></tr>
-<%end %>
-</table>
+</div>
+</div>
 
 
-<!-- Ucla's Radio -->
+<!-- Ucla's Radio
 
 <% if @item_array_size_ucla != 0 %>
 <img src=<%= @item_album_artwork_ucla.first.artwork_url100 %> style="position: absolute">
@@ -59,7 +72,7 @@ setInterval( function() {
 <tr><td>Album: <%=@track_ucla.album %></tr>
 <%end %>
 </table>
-
+-->
 
 <h1>Recent Tracks</h1>
 <table>

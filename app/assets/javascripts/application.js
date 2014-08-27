@@ -14,3 +14,17 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+<script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Abel::latin', 'Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic:latin', 'Droid+Sans+Mono::latin', 'Source+Code+Pro:200,300,400,500,600,700,900:latin', 'Exo:100,400:latin', 'Cantarell:400,700:latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); </script>
