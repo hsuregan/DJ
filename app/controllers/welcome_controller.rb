@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
 
   def list_songs
   	@item = Scrobbler::User.new('reganhsu').recent_tracks.first
-    @item_ucla = Scrobbler::User.new('uclaradio').recent_tracks.first
+    #@item_ucla = Scrobbler::User.new('uclaradio').recent_tracks.first
     @itunes = ITunes::Client.new    
 
     @recent_tracks = Track.order(updated_at: :desc).limit(5)
@@ -17,9 +17,7 @@ class WelcomeController < ApplicationController
               "artist" => @item.artist,
               "album" => @item.album})
 
-    @track_ucla = Track.new({"title" => @item_ucla.name, 
-              "artist" => @item_ucla.artist,
-              "album" => @item_ucla.album})
+    #@track_ucla = Track.new({"title" => @item_ucla.name, "artist" => @item_ucla.artist,"album" => @item_ucla.album})
     
     if(@track.artist.include? "amp;")
       @track.artist = @track.artist.delete "amp;"
@@ -36,8 +34,15 @@ class WelcomeController < ApplicationController
     @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results
     @item_array_size = @item_album_artwork.size
 
-    @item_album_artwork_ucla = @itunes.music("#{@track_ucla.artist} #{@track_ucla.title}").results
-    @item_array_size_ucla = @item_album_artwork_ucla.size
+    #@item_album_artwork_ucla = @itunes.music("#{@track_ucla.artist} #{@track_ucla.title}").results
+    #@item_array_size_ucla = @item_album_artwork_ucla.size
+
+    @time = Time.new.to_i
+    @allowed_time = Track.last.created_at.to_i + 360
+
+
+    #@item_album_artwork_ucla = @itunes.music("#{@track_ucla.artist} #{@track_ucla.title}").results
+    #@item_array_size_ucla = @item_album_artwork_ucla.size
 
   	 
 

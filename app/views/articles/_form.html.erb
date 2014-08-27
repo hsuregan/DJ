@@ -1,9 +1,31 @@
 <%= form_for @article do |f| %>
   <div class="control-group">
+   
     <%= f.label :title %>
     <div class="controls">
       <%= f.text_field :title %>
     </div>
+    
+    <%= f.label :artist %>
+    <div class="controls">
+      <%= f.text_field :artist %>
+    </div>
+    
+    <%= f.label :album %>
+    <div class="controls">
+      <%= f.text_field :album %>
+    </div>
+    
+    <%= f.label :rating %> 0 to 10
+    <div class="controls"> 
+      <%= f.number_field :rating, :in => 0..10 %>
+    </div>
+
+    <%= f.label :year %> Album Released
+    <div class="controls">
+      <%= f.number_field :year %>
+    </div>
+
   </div>
   <div class="control-group">
     <%= f.label :content %>

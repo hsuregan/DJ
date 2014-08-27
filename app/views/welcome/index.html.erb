@@ -31,12 +31,17 @@ setInterval( function() {
 font-family: 'Source Code Pro';
 }
 </style>
+
+<audio controls>
+<source src="http://stream.uclaradio.com:8000/listen" type="audio/mpeg" />
+</audio>
 <div id = "refreshable">
 
+
+<% if @allowed_time > @time %>
 <!-- Regan's Radio Show -->
 <div id ="outer" style = "width: 100%;">
 <center style = "width: 200px; margin: 0 auto; line-height: 200%">Currently Playing</center>
-
 <div id="inner" style = "width: 100px; margin: 0 auto;">
 <% if @item_array_size != 0 %>
 <img src=<%= @item_album_artwork.first.artwork_url100 %>>
@@ -55,23 +60,10 @@ font-family: 'Source Code Pro';
 </div>
 </div>
 
-
+<% end %>
 <!-- Ucla's Radio
 
-<% if @item_array_size_ucla != 0 %>
-<img src=<%= @item_album_artwork_ucla.first.artwork_url100 %> style="position: absolute">
-<% end %>
 
-<table style = "margin-left: 100px; height: 105px">
-<tr><td><b>Currently Playing On UCLARadio</b>
-</td></tr>
-<tr><td>"<%= @track_ucla.title %>"</td></tr>
-<tr><td>Artist: <%=@track_ucla.artist %></td></tr>
-
-<% if @track_ucla.album != "" %>
-<tr><td>Album: <%=@track_ucla.album %></tr>
-<%end %>
-</table>
 -->
 
 <h1>Recent Tracks</h1>
@@ -96,5 +88,8 @@ font-family: 'Source Code Pro';
 
   </div>
 
+
+
+<!-- <video controls="" height = "10" name="media"><source src="http://stream.uclaradio.com:8000/listen" type="audio/mpeg"></video> -->
 
 
