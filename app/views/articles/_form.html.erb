@@ -1,20 +1,22 @@
+
+
 <%= form_for @article do |f| %>
   <div class="control-group">
    
-    <%= f.label :title %>
+<%= f.label :title %>
     <div class="controls">
-      <%= f.text_field :title %>
+    <%= f.text_field :title %>
     </div>
   
     <%= f.label :artist %>
     <div class="controls">
-      <%= text_field(:artist, :name) %>
+      <input id = "artists" <%= text_field(:artist, :name) %>
     </div>
     
 
     <%= f.label :album %>
     <div class="controls">
-      <%= text_field(:album, :title) %>
+      <input id = "albums" <%= text_field(:album, :title) %>
     </div>
     
     <%= f.label :rating %> 0 to 10
@@ -42,3 +44,5 @@
     <%= link_to 'Cancel', articles_path %>
   </div>
 <% end %>
+
+

@@ -8,6 +8,19 @@ def new
 	@article = Article.new
 	@album = Album.new
 	@artist = Artist.new
+	
+	@albumTitles = []
+	@artistNames = []
+	albums = Album.all
+	albums.each do |album|
+		@albumTitles.push(album.title)
+	end
+	
+	artists = Artist.all
+	artists.each do |artist|
+		@artistNames.push(artist.name)
+	end
+
 end
 
 def create

@@ -42,9 +42,9 @@ font-family: 'Source Code Pro';
 <!-- Regan's Radio Show -->
 <div id ="outer" style = "width: 100%;">
 <center style = "width: 200px; margin: 0 auto; line-height: 200%">Currently Playing</center>
-<div id="inner" style = "width: 100px; margin: 0 auto;">
+<div id="inner" style = "width: 150px; margin: 0 auto;">
 <% if @item_array_size != 0 %>
-<img src=<%= @item_album_artwork.first.artwork_url100 %>>
+<img src=<%= @item_album_artwork.first.artwork_url100 %> style = "height: 150px; width:150px">
 <% end %>
 </div>
 <div id= "info" style = "line-height: 50%">
@@ -57,7 +57,6 @@ font-family: 'Source Code Pro';
 </center>
 </div>
 
-</div>
 </div>
 <% end %>
 <!-- Ucla's Radio
@@ -74,6 +73,7 @@ font-family: 'Source Code Pro';
 </table>
 
 
+</div>
 </div>
 
 
