@@ -5,15 +5,16 @@
     <div class="controls">
       <%= f.text_field :title %>
     </div>
-    
+  
     <%= f.label :artist %>
     <div class="controls">
-      <%= f.text_field :artist %>
+      <%= text_field(:artist, :name) %>
     </div>
     
+
     <%= f.label :album %>
     <div class="controls">
-      <%= f.text_field :album %>
+      <%= text_field(:album, :title) %>
     </div>
     
     <%= f.label :rating %> 0 to 10
@@ -25,6 +26,8 @@
     <div class="controls">
       <%= f.number_field :year %>
     </div>
+
+
 
   </div>
   <div class="control-group">

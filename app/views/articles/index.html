@@ -1,5 +1,11 @@
+
+
+<div id= "Recent_Reviews">
+Recently Reviewed
 <ul>
 <% @articles.each do |article| %>
-<li><%= article.title %></li>
+<li><%= article.album.title %> </li>
 <%end%>
 </ul>
+
+</div>
