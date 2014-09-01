@@ -3,9 +3,9 @@
 <%= form_for @article do |f| %>
   <div class="control-group">
    
-<%= f.label :title %>
+<%= f.label :author %>
     <div class="controls">
-    <%= f.text_field :title %>
+    <%= f.text_field :author %>
     </div>
   
     <%= f.label :artist %>
@@ -13,10 +13,19 @@
       <input id = "artists" <%= text_field(:artist, :name) %>
     </div>
     
-
     <%= f.label :album %>
     <div class="controls">
       <input id = "albums" <%= text_field(:album, :title) %>
+    </div>
+
+    <%= f.label :year %> Released
+    <div class="controls">
+      <input id = "year" <%= number_field(:album, :year) %>
+    </div>
+
+    <%= f.label :album %> Genre
+    <div class="controls">
+      <input id = "year" <%= text_field(:album, :genre) %>
     </div>
     
     <%= f.label :rating %> 0 to 10
@@ -24,10 +33,7 @@
       <%= f.number_field :rating, :in => 0..10 %>
     </div>
 
-    <%= f.label :year %> Album Released
-    <div class="controls">
-      <%= f.number_field :year %>
-    </div>
+   
 
 
 

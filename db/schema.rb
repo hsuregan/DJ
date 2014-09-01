@@ -26,10 +26,9 @@ ActiveRecord::Schema.define(version: 20140827222656) do
   end
 
   create_table "articles", force: true do |t|
-    t.string   "title"
+    t.string   "author"
     t.text     "content"
     t.integer  "rating"
-    t.integer  "year"
     t.integer  "artist_id"
     t.integer  "album_id"
     t.datetime "created_at"

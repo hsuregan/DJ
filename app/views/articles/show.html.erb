@@ -1,7 +1,7 @@
-<h1><%= @article.title %></h1>
-<h2><%= @article.artist %></h2>
-<h2><%= @article.album %></h2>
-<h2><%= @article.year %></h2>
+<h1><%= @article.author %></h1>
+<h2>Artist: <%= @article.artist.name %></h2>
+<h2>Album: <%= @article.album.title %></h2>
+<h2><%= @article.album.year %></h2>
 <h2><%= @article.rating %></h2>
 
 <p><%= @article.content %> </p>
