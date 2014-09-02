@@ -38,14 +38,10 @@ font-family: 'Source Code Pro';
 
 <% if @allowed_time > @time %>
 <!-- Regan's Radio Show -->
-<div id ="outer" style = "width: 100%;">
-<center style = "width: 200px; margin: 0 auto; line-height: 200%">Currently Playing</center>
-<div id="inner" style = "width: 150px; margin: 0 auto;">
+<center>Currently Playing</center>
 <% if @item_array_size != 0 %>
-<img src=<%= @item_album_artwork.first.artwork_url100 %> style = "height: 150px; width:150px">
+<center><img src=<%= @item_album_artwork.first.artwork_url100 %> style = "height: 150px;"></center>
 <% end %>
-</div>
-<div id= "info" style = "line-height: 50%">
 <center>
   <p>"<%= @track.title %>"</p>
   <p>Artist - <%=@track.artist %></p>
@@ -53,9 +49,7 @@ font-family: 'Source Code Pro';
   <p>Album - <%= @track.album %></p>
   <% end %>
 </center>
-</div>
 
-</div>
 <% end %>
 <!-- Ucla's Radio
 
@@ -72,18 +66,10 @@ font-family: 'Source Code Pro';
 
 
 </div>
-</div>
 
 
 
- <div class="btn-group">
-              <%= link_to "Sign Up", new_user_path %>
-              <%= link_to "Log In", new_session_path %>
-              <% if current_user %>
-              <%= link_to "Log Out", session_path("current"), method: 'delete' %>
-              <%end%>
 
-  </div>
 
 
 

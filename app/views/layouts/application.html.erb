@@ -1,133 +1,132 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>DJ</title>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <style>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "DJ" %></title>
+    <%= csrf_meta_tags %>
 
-#center{
-	width: 100%;
-	text-align: center;
-	position: fixed;
-	margin: 0 auto;
-	left: 0;
-	right: 0;}
-#navcontainer{
-	margin: 0 auto;
-	width: 330px;
-	background-color: transparent;
-	border: thick;
-	border-color: black;
-	transition: background-color .5s ease, visibility .5s ease, display .5s ease;}
-#navcontainer ul{
-	margin: 0 auto;
-	padding: 0;
-	list-style-type: none;
-	transition: background-color .7s ease, visibility .7s ease, display .7s ease;
-	z-index: -1;}
-.icon {
-	transition: background-color .5s ease, visibility .5s ease, display .5s ease;
-	padding-top: 10px !important;
-	z-index: -1;
-	line-height: 10px;
-	background-color: rgba(248,244,244,0.8);
-	transition: background-color 0.5s ease, color .9s ease, height .5s ease;
-	//display: inline;
-	width: 110px !important;
-	float: left;
-	color: black;
-	font-family: 'Ubuntu', sans-serif;
-	font-size:23px;
-	//padding: 30px;
-	border: 5px black !important;
-	margin: 0px;
-	text-align: center;
-	visibility: visible;
-	padding: 0px;}
-.icon:hover{
-	background-color:rgba(0,0,0,0.8);
-	color: white;
-	-moz-box-shadow:    inset 0 0 10px #000000;
-	-webkit-box-shadow: inset 0 0 10px #000000;
-	box-shadow:         inset 0 0 10px #000000;
-	z-index: -1;}
-.icon:hover img {-webkit-filter: invert(100%); margin-top: 10px;}
-img {
-	transition: margin-top 0.7s ease;
-	position: relative;}
-  </style>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+    <![endif]-->
 
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script>
-$(document).ready(
-	$('img').hover(
-		function()
-		{
-			$(this).css('margin-top', '10px');
-		},
-		function()
-		{
-			$(this).css('margin-top', '0px')
-		}
-		)
-	)
-</script>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <!-- Size should be 144 x 144 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+    <!-- For iPhone with high-resolution Retina display: -->
+    <!-- Size should be 114 x 114 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+    <!-- For first- and second-generation iPad: -->
+    <!-- Size should be 72 x 72 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <!-- Size should be 57 x 57 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+    <%= javascript_include_tag "application" %>
+  </head>
+  <body>
+
+    <div class="row" style = "font-size: 10px">
+      <div class="col-lg-12">
+         <div class="navbar navbar-default navbar-static-top">
+          <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+
+              <ul class="nav navbar-nav">
+                <li>
+                  <a href="<%= root_path %>"> <%= image_tag("dj.png") %> <p>Home</p> </a>
+                </li>
+
+                <li>
+                  <a href="/articles"><%= image_tag("search28.png") %> <p>Critics</p></a>
+                </li>
 
 
-</head>
+                <li>
+                  <a href="/articles/new"><%= image_tag("teacher35.png") %><p>Review</p></a>
+                </li>
 
-<body>
+                <li>
+                  <a href="/sessions/new"><%= image_tag("login.png") %><p>Login</p></a>
+                </li>
+
+                <% if current_user== false %>
+                <li>
+                  <a href="/users/new"><%= image_tag("login.png") %><p>Sign Up</p></a>
+                </li>
+                <%end%>
+
+              <% if current_user %>
+              <li>
+
+<%= link_to image_tag("logout.png"), session_path("current"), method: 'delete' %> logout
 
 
+              </li>
+              <%end%>
 
-<!-- display flash message for bad user-->
-<div class="row">
-  <div class="span4">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, id: "flash_#{name}" %>
-    <% end %>
-  </div>
-</div>
-
-<div id = "center" style = "margin-top: -120px">
-<div id = "navcontainer">
-<ul>
-<li>
-
-  <div class='icon'>
-      <%=image_tag("BLACKBEAR.png")%>
-      <p style = "margin-top: 10px">Radio</p>  
+              </ul>
+            </div>
+          </div>
+        </div>
+        
       </div>
-    
- </li>
-<li>
-<%= link_to(root_path) do %>
-  <div class='icon'>
-      <%=image_tag("home.png")%>
-      <p style = "margin-top: 10px">Home</p>
-  </div>
-  <% end %>
- </li>
+    </div>
+   
 
-<%= link_to(articles_path) do %>
-<li>
-  <div class='icon'>
-      <%=image_tag("record.png")%>
-      <p style = "margin-top: 10px">Reviews</p>
-  </div> 
-</li>
- <% end %>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
 
-</ul>
-</div>
-</div>
+        <div class="col-lg-6">
+         <div class="btn-group">
+            
+ 		 </div>
 
-<div = "ugh" style = "margin-top: 120px; color: blue">
-<%=yield%>
-</div>
+          <div class="well sidebar-nav">
+            <h3>Sidebar</h3>
+            
+              
 
 
-</body>
+
+
+
+
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <footer>
+        <p>&copy; Regan Hsu 2014</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+
+
+  </body>
 </html>

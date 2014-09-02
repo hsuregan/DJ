@@ -1,0 +1,39 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Use Font Awesome icons (default)
+  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+  =require twitter-bootstrap-static/fontawesome
+  */
+
+  /* change base */
+
+.navbar {
+  	min-height: 35px;
+    font-size: 15px;
+    line-height: 20px
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+  background-color: ;
+}
+
+.navbar .nav > li > a {
+    float: none;
+    line-height: 19px;
+    color:  transparent;
+
+}
+
+.navbar .nav > li > a:hover {
+	color: blue;
+	transition: color .5s ease, visibility .5s ease, display .5s ease;
+}
+
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
