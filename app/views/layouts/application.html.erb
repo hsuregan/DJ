@@ -50,6 +50,8 @@
 
             <div class="navbar-collapse collapse navbar-responsive-collapse">
 
+
+            <div id = "bar">
               <ul class="nav navbar-nav">
                 <li>
                   <a href="<%= root_path %>"> <%= image_tag("dj.png") %> <p>Home</p> </a>
@@ -77,13 +79,14 @@
               <% if current_user %>
               <li>
 
-<%= link_to image_tag("logout.png"), session_path("current"), method: 'delete' %> logout
+<%= link_to image_tag("logout.png"), session_path("current"), method: 'delete' %> 
 
 
               </li>
               <%end%>
 
               </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -94,36 +97,35 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-6">
+
+        <div class="col-lg-4">
+          <div class="well sidebar-nav" style="background-color: white; text-align: right; border: none; margin-top: -20px">
+            <h2>News</h2>
+            <% press_release.all.each do |status| %>
+              <h4><%= status.title %></h4>
+              <h6><%= status.created_at %></h6>
+              <h5><%= status.content %></h5>
+            <% end %>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+
+        <div class="col-lg-8">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
 
-        <div class="col-lg-6">
-         <div class="btn-group">
-            
- 		 </div>
-
-          <div class="well sidebar-nav">
-            <h3>Sidebar</h3>
-            
-              
-
-
-
-
-
-
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
+        
       </div><!--/row-->
 
-      <footer>
-        <p>&copy; Regan Hsu 2014</p>
-      </footer>
 
     </div> <!-- /container -->
+
+<div class="row">
+      <footer>
+        <center><p>&copy; Regan Hsu 2014</p></center>
+      </footer>
+      </div>
 
 
 

@@ -5,8 +5,10 @@ def index
 	if params[:search]
 		if (Artist.search_by(params[:search]).count != 0)
 			@articles = Artist.search_by(params[:search]).first.articles
-			@articles = Article.all.limit(0)
+		else
+			@articles = Article.order(updated_at: :desc).limit(25)
 		end
+
 	else
 		@articles = Article.order(updated_at: :desc).limit(25)
 	end

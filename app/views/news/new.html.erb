@@ -1,0 +1,12 @@
+<h1>Write and post a New Press Letter</h1>
+	<% if @new.errors.any? %>
+		<div class="error_messages">
+			<h2>You're missing some field</h2>
+			<ul>
+      			<% @new.errors.full_messages.each do |message| %>
+        		<li><%= message %></li>
+      			<% end %>
+    		</ul>
+    	</div>
+    <% end %>
+    <%= render :partial => 'form' %>

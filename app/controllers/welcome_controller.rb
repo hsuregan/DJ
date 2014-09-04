@@ -4,6 +4,7 @@ class WelcomeController < ApplicationController
 
   def index
   	list_songs
+    @request = Request.new()
   end
 
 
@@ -12,7 +13,7 @@ class WelcomeController < ApplicationController
     #@item_ucla = Scrobbler::User.new('uclaradio').recent_tracks.first
     @itunes = ITunes::Client.new    
 
-    @recent_tracks = Track.order(updated_at: :desc).limit(5)
+    @recent_tracks = Track.order(updated_at: :desc).limit(10)
     @track = Track.new({"title" => @item.name, 
               "artist" => @item.artist,
               "album" => @item.album})
@@ -44,11 +45,18 @@ class WelcomeController < ApplicationController
     #@item_album_artwork_ucla = @itunes.music("#{@track_ucla.artist} #{@track_ucla.title}").results
     #@item_array_size_ucla = @item_album_artwork_ucla.size
 
-  	 
-
   	 #respond_with(@item)
   	
   end
 
+  def create
+    @request = Request.new(request_params)
+    @request.save
+  end
+
+private
+  def request_params
+    params.require(:request).permit(:title, :requester)
+  end
 
 end

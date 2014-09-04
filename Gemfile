@@ -44,9 +44,9 @@ gem 'daemon-spawn'
 gem 'lastfm', '~> 1.25.0'
 gem 'itunes', '~> 0.6.0'
 gem 'jquery-turbolinks'
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+gem 'therubyracer'
+gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 

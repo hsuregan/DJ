@@ -14,5 +14,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def press_release
+    @press_release = News.order(updated_at: :desc).limit(25)
+  end
+  helper_method :press_release
 end
 

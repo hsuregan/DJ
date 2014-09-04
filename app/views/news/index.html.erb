@@ -1,0 +1,6 @@
+<h1>All Published News</h1>
+<ul>
+<% @news.each do |status| %>
+<li><b><%=status.title %></b> : <%=status.content%></li>
+<%end%>
+</ul>
