@@ -48,12 +48,18 @@ $(function() {
 
 <head>
   <link href='http://fonts.googleapis.com/css?family=Abel|Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic|Droid+Sans+Mono|Source+Code+Pro:200,300,400,500,600,700,900|Exo:100,400|Cantarell:400,700' rel='stylesheet' type='text/css'>
+
 </head>
 
 <style>
 *
 {
 font-family: 'Source Code Pro';
+}
+
+#DJicon img
+{
+  height: 250px;
 }
 </style>
 
@@ -78,19 +84,24 @@ font-family: 'Source Code Pro';
 <% if @item_array_size != 0 %>
 <center><img src=<%= @item_album_artwork.first.artwork_url100 %> style = "height: 150px; border-radius: 100%; border: white solid 10px"></center>
 <% end %>
-<center>
+  <center>
   "<%= @track.title %>"
   <% if @track.album != "" %>
-  <div id = "box" style="width: 150px">
-  <p><em><%= @track.album %></em></p>
-  </div>
+    <div id = "box" style="width: 150px">
+      <p><em><%= @track.album %></em></p>
+    </div>
   <% end %>
-</center>
+  </center>
+
+<% else %>
+  <center><div id = "DJicon"><%= image_tag("voice12(1).png") %></div></center>
 <% end %>
+
+
 </div>
 </div>
 
-<%= render :partial => 'form' %> 
+<center><%= render :partial => 'requests/form' %> </center>
 
 </div>
 

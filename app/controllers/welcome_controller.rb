@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
 
   def index
   	list_songs
-    @request = Request.new()
+    @request = Request.new
   end
 
 
@@ -49,14 +49,8 @@ class WelcomeController < ApplicationController
   	
   end
 
-  def create
-    @request = Request.new(request_params)
-    @request.save
-  end
 
-private
-  def request_params
-    params.require(:request).permit(:title, :requester)
-  end
+
+
 
 end

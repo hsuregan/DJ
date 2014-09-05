@@ -5,49 +5,56 @@
    
 <%= f.label :author %>
     <div class="controls">
-    <%= f.text_field :author %>
+    <%= f.text_field :author, class: "form-control" %>
     </div>
   
     <%= f.label :artist %>
     <div class="controls">
-      <input id = "artists" <%= text_field(:artist, :name) %>
+      <input class = "form-control" <%= text_field(:artist, :name) %>
     </div>
     
     <%= f.label :album %>
     <div class="controls">
-      <input id = "albums" <%= text_field(:album, :title) %>
-    </div>
-
-    <%= f.label :year %> Released
-    <div class="controls">
-      <input id = "year" <%= number_field(:album, :year) %>
+      <input class = "form-control" <%= text_field(:album, :title) %>
     </div>
 
     <%= f.label :album %> Genre
     <div class="controls">
-      <input id = "year" <%= text_field(:album, :genre) %>
+      <input class = "form-control" <%= text_field(:album, :genre) %>
     </div>
     
+    <%= f.label :year %> Released
+    <div class="controls">
+      <input class = "form-control" <%= number_field(:album, :year) %>
+    </div>
+
+
     <%= f.label :rating %> 0 to 10
     <div class="controls"> 
-          <%= f.number_field :rating, :in => 0..10 %>
+          <%= f.number_field :rating, :in => 0..10, class: "form-control" %>
     </div>
    
 
 
 
   </div>
+
   <div class="control-group">
     <%= f.label :content %>
     <div class="controls">
-      <%= f.text_area :content, rows: "20", cols: "50" %>
+      <%= f.text_area :content, rows: "20", cols: "50", class: "form-control" %>
     </div>
   </div>
 
+  <p>
+
   <div class="form-actions">
-    <%= f.submit nil %>
-    <%= link_to 'Cancel', articles_path %>
+  
+    <%= f.submit nil, class: "btn btn-primary" %>
+    <%= link_to 'Cancel', articles_path, class: "btn btn-primary" %>
+  
   </div>
+  </p>
 <% end %>
 
 

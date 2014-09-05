@@ -1,0 +1,11 @@
+<%= form_for @request, class: "form-control input-lg", :url => url_for(:controller => 'requests') do |f| %>
+
+    <p><%= f.text_field :title, class: "form-control", placeholder: "Song/Joke/Opinion/Fact/Fact-Check/Etc"%></p>
+
+    <%= f.text_field :requester, class: "form-control", placeholder: "Your Name" %>
+
+
+     <p><div class="form-actions">
+    <%= f.submit nil, class: "btn btn-primary" %>
+  </div></p>
+<%end%>
