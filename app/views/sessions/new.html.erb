@@ -10,16 +10,21 @@ font-family: 'Source Code Pro';
 </style>
 
 
-
+<div class="col-lg-6">
+<center>
  <h1>Login</h1>
   <%= form_tag sessions_path do %>
     <div class="field">
       <%= label_tag :email %><br />
-      <%= text_field_tag :email, params[:email]%> 
+      <%= text_field_tag :email, params[:email], class: "form-control input-sm" %> 
     </div>
     <div class="field">
       <%= label_tag :password %><br />
-      <%= text_field_tag :password, params[:password], :type => "password" %> 
+      <%= text_field_tag :password, params[:password], :type => "password", class: "form-control input-sm"  %> 
     </div>
-    <div class="actions"><%= submit_tag "Log In" %></div>
+    <p>
+    <div class="actions"><%= submit_tag "Log In", class: "btn btn-primary" %></div>
+    </p>
   <% end %>
+  </center>
+  </div>

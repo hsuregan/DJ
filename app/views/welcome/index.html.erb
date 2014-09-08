@@ -69,23 +69,22 @@ font-family: 'Source Code Pro';
 
 <div class = "row">
 <div class="col-lg-6">
-<div id = "wrap" style = "height: 350px; width: 350px; margin-left: auto; margin-right: auto; padding-top">
-<div id = "currently_playing" style="border-style: transparent; border-radius: 100%; height: 350px; width: 350px; padding-top: 40px; background-image: url(<%= asset_path 'CD.png' %>); float: center; z-index: -5; position: absolute">
+<div id = "wrap" style = "height: 350px; width: 350px; margin-left: auto; margin-right: auto">
+<div id = "currently_playing" style="border-style: transparent; border-radius: 100%; height: 350px; width: 350px; padding-top: 20px; background-image: url(<%= asset_path 'CD.png' %>); float: center; z-index: -5; position: absolute">
 </div>
 
-<div id = "refreshable" style = "padding-top: 45px; color: yellow; margin-left: auto; margin-right: auto">
+<div id = "refreshable" style = "padding-top: 45px; color: yellow; margin-left: auto; margin-right: auto; border-radius: 100%">
 
 <% if @allowed_time > @time %>
 <!-- Regan's Radio Show -->
 <div id = "box" style="margin-left: auto; margin-right: auto">
-<center>Currently;</center>
-<center><p><strong><%=@track.artist %></strong></p></center>
+<center><p><strong><%=@track.artist %></strong></p>  "<%= @track.title %>"
+</center>
 </div>
 <% if @item_array_size != 0 %>
-<center><img src=<%= @item_album_artwork.first.artwork_url100 %> style = "height: 150px; border-radius: 100%; border: white solid 10px"></center>
+<center><img src=<%= @item_album_artwork %> style = "height: 150px; border-radius: 100%; border: white solid 10px"></center>
 <% end %>
   <center>
-  "<%= @track.title %>"
   <% if @track.album != "" %>
     <div id = "box" style="width: 150px">
       <p><em><%= @track.album %></em></p>

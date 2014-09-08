@@ -28,11 +28,13 @@ class WelcomeController < ApplicationController
       @track.title = @track.title.delete "amp;"
     end
 
-    if(@track.title != Track.last.title || @track.artist != Track.last.artist)
+    if (Track.last != nil)
+      if (@track.title != Track.last.title || @track.artist != Track.last.artist)
         @track.save!
+      end
     end
 
-    @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results
+    @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results.first.artwork_url100
     @item_array_size = @item_album_artwork.size
 
     #@item_album_artwork_ucla = @itunes.music("#{@track_ucla.artist} #{@track_ucla.title}").results

@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
-def new 
-	@user = User.new
+def new
+	if current_user != nil && current_user.email == "hsuregan@gmail.com"
+		@user = User.new
+	else
+		redirect_to root_path
+	end
 end
 
 def create

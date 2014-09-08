@@ -1,7 +1,11 @@
 class RequestsController < ApplicationController
 
   def index
-  	redirect_to root_path
+    if current_user == nil
+      redirect_to root_path
+    else
+      @requests = Request.order(updated_at: :asc)
+    end
   end
 
 

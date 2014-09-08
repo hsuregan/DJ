@@ -1,7 +1,8 @@
 class ArticlesController < ApplicationController
 
 def index
-
+    @itunes = ITunes::Client.new
+       # @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results.first.artwork_url100
 	if params[:search]
 		if (Artist.search_by(params[:search]).count != 0)
 			@articles = Artist.search_by(params[:search]).first.articles
@@ -59,7 +60,7 @@ def create
 		@article.artist = @artist
 		@article.album = @album
 		@article.save
-		redirect_to @article, notice: 'Your article has been published'
+		redirect_to @article, notice: 'Your Article is Pending for Review.  An email will be sent if approved.'
 	else
 		render "new"
 	end
@@ -69,10 +70,37 @@ def show
 	@article = Article.find(params[:id])
 end
 
+def edit
+		@article = Article.find(params[:id])
+		if session[:user_id] == nil
+			redirect_to @article, notice: "nope"
+		end
+	
+		
+		#return RedirectToAction("Index", model);
+
+		#@article = Article.find(params[:id])
+		
+end
+
+def update
+		@article = Article.find(params[:id])
+		if (session[:user_id])
+			if @article.update(params.require(:article).permit(:approval))
+				redirect_to @article, notice: 'Article is Online'
+			else
+				render "edit"
+			end
+		else
+			redirect_to @article, notice: "No Access Rights"
+			
+		end
+end
+
 private
 
 def article_params
-	params.require(:article).permit(:author, :content, :artist_ids, :album_ids, :rating)
+	params.require(:article).permit(:author, :email, :content, :artist_ids, :album_ids, :rating)
 end
 
 def album_params

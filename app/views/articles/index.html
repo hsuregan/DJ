@@ -9,7 +9,77 @@ font-family: 'Source Code Pro';
 }
 </style>
 
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('.ajax_link').click(function(event) {
+  event.preventDefault();
+  var url = $(this).attr('href');
+  $.get(url, function(htmloutput) {
+  $('#article_show').html(htmloutput);
+  $('#modal_article').modal('show');
+  });
 
+  });
+  });
+</script>
+
+<div class="modal fade" id="modal_article" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+  
+  <div class="modal-body">
+  <div id="article_show"></div>
+  </div>
+  
+  <div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  
+  </div>
+  </div>
+</div>
+
+
+
+<div class="col-lg-6">
+<div id= "Recent_Reviews">
+<center><h1>Reviews</h1></center>
+
+	<% @articles.each do |x| %>
+  <% if (session[:user_id] || x.approval == true) %>
+
+  <div class="row">
+  <div class="col-lg-4">
+    <img src = <%= @itunes.music("#{x.artist.name} #{x.album.title}").results.first.artwork_url100 %>>
+  </div>
+
+  <div class="col-lg-3">
+    <center> <h1>
+    <%= link_to x.rating, article_path(x), :class => "ajax_link" %></h1></center>
+  </div>
+
+  <div class="col-lg-4">
+	   <p>"<%=x.album.title %>" </br>
+     <em><%=x.artist.name %></em> </br>
+     <%=x.author%></p>
+  </div>
+  </div>
+
+
+    <% if session[:user_id] && (x.approval == false || x.approval == nil) %>
+        <%= form_for(x) do |f| %>
+          <%= f.check_box :approval, {}, true, false %>
+          <%= f.submit nil, class: "btn btn-primary", placeholder: "ugh" %>
+          <%end%>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+</div>
+</div>
+
+<div class="col-lg-6">
  <!-- search form -->
   <!-- When submit the form, the view rendered will be the index view of our articles resource -->
   <%= form_tag(articles_path, :method => "get", class: "navbar-form", id: "search-form") do %>
@@ -23,18 +93,6 @@ font-family: 'Source Code Pro';
     </div>
   <% end %>
 <!-- search form -->
-
-
-<div id= "Recent_Reviews">
-Reviews 
-<ul>
-	<% @articles.each do |x| %>
-	<li><%=x.artist.name %> reviewed by <%=x.author%></li>
-<%end%>
-</ul>
-
 </div>
-
-
 
 

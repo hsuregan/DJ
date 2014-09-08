@@ -53,37 +53,51 @@
 
             <div id = "bar">
               <ul class="nav navbar-nav">
+
                 <li>
-                  <a href="<%= root_path %>"> <%= image_tag("dj.png") %> <p>Home</p> </a>
+                  <a href="<%= root_path %>"> <%= image_tag("dj.svg") %> <p>Home</p> </a>
                 </li>
 
                 <li>
-                  <a href="/articles"><%= image_tag("search28.png") %> <p>Critics</p></a>
-                </li>
-
-
-                <li>
-                  <a href="/articles/new"><%= image_tag("teacher35.png") %><p>Review</p></a>
+                  <a href="/articles"><%= image_tag("search92.svg") %> <p>Critics</p></a>
                 </li>
 
                 <li>
-                  <a href="/sessions/new"><%= image_tag("login.png") %><p>Login</p></a>
+                  <a href="/articles/new"><%= image_tag("teacher35.svg") %><p>Review</p></a>
                 </li>
 
-                <% if current_user== false %>
+
+                <% if current_user != nil && current_user.email == "hsuregan@gmail.com" %>
+                  <li>
+                    <a href="/users/new"><%= image_tag("create1.svg") %><p>User!</p></a>
+                  </li>
+                <%end%>
+
+                <% if current_user %>
+                  <li>
+                    <a href="/news/new"><%= image_tag("newspaper8.svg") %><p>Print</p></a>
+                  </li>
+                <% end %>
+
+                <% if current_user %>
+                  <li>
+                    <a href="/requests"><%= image_tag("student37.svg") %><p>Requests</p></a>
+                  </li>
+                <% end %>
+
+
                 <li>
-                  <a href="/users/new"><%= image_tag("login.png") %><p>Sign Up</p></a>
+                  <a href="/sessions/new"><%= image_tag("incoming4.svg") %><p>Login</p></a>
+                </li>
+
+
+                <% if current_user %>
+                <li>
+                  <%= link_to image_tag("outcoming1.svg"), session_path("current"), method: 'delete' %>
                 </li>
                 <%end%>
 
-              <% if current_user %>
-              <li>
 
-<%= link_to image_tag("logout.png"), session_path("current"), method: 'delete' %> 
-
-
-              </li>
-              <%end%>
 
               </ul>
               </div>

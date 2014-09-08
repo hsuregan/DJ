@@ -2,10 +2,26 @@
 
 <%= form_for @article do |f| %>
   <div class="control-group">
+
+  <div class="col-lg-6">
+  <div class="control-group">
+    <%= f.label :content %>
+    <div class="controls">
+      <%= f.text_area :content, rows: "20", cols: "50", class: "form-control" %>
+    </div>
+  </div>
+  </div>
    
-<%= f.label :author %>
+   <div class="col-lg-6">
+
+    <%= f.label :author %>
     <div class="controls">
     <%= f.text_field :author, class: "form-control" %>
+    </div>
+
+    <%= f.label :email %>
+    <div class="controls">
+    <%= f.text_field :email, class: "form-control" %>
     </div>
   
     <%= f.label :artist %>
@@ -33,18 +49,6 @@
     <div class="controls"> 
           <%= f.number_field :rating, :in => 0..10, class: "form-control" %>
     </div>
-   
-
-
-
-  </div>
-
-  <div class="control-group">
-    <%= f.label :content %>
-    <div class="controls">
-      <%= f.text_area :content, rows: "20", cols: "50", class: "form-control" %>
-    </div>
-  </div>
 
   <p>
 
@@ -55,6 +59,15 @@
   
   </div>
   </p>
+   </div>
+
+
+
+  </div>
+
+
+
+
 <% end %>
 
 

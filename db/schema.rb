@@ -27,10 +27,12 @@ ActiveRecord::Schema.define(version: 20140903204635) do
 
   create_table "articles", force: true do |t|
     t.string   "author"
+    t.string   "email"
     t.text     "content"
     t.integer  "rating"
     t.integer  "artist_id"
     t.integer  "album_id"
+    t.boolean  "approval"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
