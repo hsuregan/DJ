@@ -1,7 +1,6 @@
 class ArticlesController < ApplicationController
 
 def index
-    @itunes = ITunes::Client.new
        # @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results.first.artwork_url100
 	if params[:search]
 		if (Artist.search_by(params[:search]).count != 0)
@@ -42,6 +41,7 @@ def create
 	@artist.name = @artist.name.split.map(&:capitalize).join(' ').rstrip.lstrip
 
 	if(Artist.where(:name => @artist.name).count == 0)
+		UserMailer.written_article.deliver
 		@artist.save
 	else
 		@artist = Artist.where(:name => @artist.name)[0]
@@ -60,7 +60,7 @@ def create
 		@article.artist = @artist
 		@article.album = @album
 		@article.save
-		redirect_to @article, notice: 'Your Article is Pending for Review.  An email will be sent if approved.'
+		redirect_to root_path, notice: 'Your Article is Pending for Review.  An email will be conveyed if we think it is right for our site!'
 	else
 		render "new"
 	end
@@ -68,12 +68,14 @@ end
 
 def show
 	@article = Article.find(params[:id])
+	render layout: false
+
 end
 
 def edit
 		@article = Article.find(params[:id])
 		if session[:user_id] == nil
-			redirect_to @article, notice: "nope"
+			redirect_to root_path, notice: "No Access Rights"
 		end
 	
 		
@@ -87,7 +89,8 @@ def update
 		@article = Article.find(params[:id])
 		if (session[:user_id])
 			if @article.update(params.require(:article).permit(:approval))
-				redirect_to @article, notice: 'Article is Online'
+				UserMailer.article_email(@article.email).deliver
+				redirect_to root_path, notice: 'Article is Online'
 			else
 				render "edit"
 			end
@@ -100,7 +103,7 @@ end
 private
 
 def article_params
-	params.require(:article).permit(:author, :email, :content, :artist_ids, :album_ids, :rating)
+	params.require(:article).permit(:author, :email, :content, :image, :artist_ids, :album_ids, :rating)
 end
 
 def album_params

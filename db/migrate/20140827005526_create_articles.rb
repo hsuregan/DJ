@@ -4,10 +4,11 @@ class CreateArticles < ActiveRecord::Migration
       t.string :author
       t.string :email
       t.text :content
-      t.integer :rating
+      t.decimal :rating
       t.integer :artist_id
       t.integer :album_id
       t.boolean :approval
+      t.string :image
       t.timestamps
     end
   end

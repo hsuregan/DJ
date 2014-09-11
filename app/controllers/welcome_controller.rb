@@ -34,7 +34,7 @@ class WelcomeController < ApplicationController
       end
     end
 
-    @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results.first.artwork_url100
+    @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results
     @item_array_size = @item_album_artwork.size
 
     #@item_album_artwork_ucla = @itunes.music("#{@track_ucla.artist} #{@track_ucla.title}").results

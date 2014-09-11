@@ -1,21 +1,11 @@
-<head>
-  <link href='http://fonts.googleapis.com/css?family=Abel|Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic|Droid+Sans+Mono|Source+Code+Pro:200,300,400,500,600,700,900|Exo:100,400|Cantarell:400,700' rel='stylesheet' type='text/css'>
-</head>
-
-<style>
-*
-{
-font-family: 'Source Code Pro';
-}
-</style>
 
 
-<div class="col-lg-6">
-<h1><%= @article.author %></h1>
-<h2>Artist: <%= @article.artist.name %></h2>
-<h2>Album: <%= @article.album.title %></h2>
-<h2><%= @article.album.year %></h2>
-<h2><%= @article.rating %></h2>
+<%- model_class = Article -%>
+<div class="page-header"> <center><h2>"<%= @article.album.title%>"</h2> <h3><%= @article.artist.name %></h3></br> Reviewed By <strong><%= @article.author %></strong></center></div>
 
-<p><%= @article.content %> </p>
-</div>
+<dl class="dl-horizontal">
+
+<%= simple_format(@article.content.gsub(/\n/, '<br/>')) %>
+</dl>
+
+

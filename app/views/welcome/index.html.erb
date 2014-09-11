@@ -82,7 +82,7 @@ font-family: 'Source Code Pro';
 </center>
 </div>
 <% if @item_array_size != 0 %>
-<center><img src=<%= @item_album_artwork %> style = "height: 150px; border-radius: 100%; border: white solid 10px"></center>
+<center><img src=<%= @item_album_artwork.first.artwork_url100 %> style = "height: 150px; border-radius: 100%; border: white solid 10px"></center>
 <% end %>
   <center>
   <% if @track.album != "" %>
