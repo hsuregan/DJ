@@ -2,15 +2,10 @@ class ArticlesController < ApplicationController
 
 def index
        # @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results.first.artwork_url100
-	if params[:search]
-		if (Artist.search_by(params[:search]).count != 0)
+	if params[:search] && (Artist.search_by(params[:search]).count != 0)
 			@articles = Artist.search_by(params[:search]).first.articles
-		else
-			@articles = Article.order(updated_at: :desc).limit(25)
-		end
-
 	else
-		@articles = Article.order(updated_at: :desc).limit(25)
+		@articles = Article.order(updated_at: :desc)
 	end
 end
 
