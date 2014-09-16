@@ -26,6 +26,7 @@ setInterval( function() {
 </script>
 
 
+
 <script>
 $(function() {
     var $elie = $("#currently_playing"), degree = 0, timer;
@@ -46,16 +47,38 @@ $(function() {
 </script>
 
 
-<head>
-  <link href='http://fonts.googleapis.com/css?family=Abel|Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic|Droid+Sans+Mono|Source+Code+Pro:200,300,400,500,600,700,900|Exo:100,400|Cantarell:400,700' rel='stylesheet' type='text/css'>
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('.ajax_link').click(function(event) {
+  event.preventDefault();
+  var url = $(this).attr('href');
+  $.get(url, function(htmloutput) {
+  $('#article_show').html(htmloutput);
+  $('#modal_article').modal('show');
+  });
 
-</head>
+  });
+  });
+</script>
+
+<div class="modal fade" id="modal_article" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+  
+  <div class="modal-body">
+  <div id="article_show"></div>
+  </div>
+  
+  <div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  
+  </div>
+  </div>
+</div>
+
 
 <style>
-*
-{
-font-family: 'Source Code Pro';
-}
 
 #DJicon img
 {
@@ -71,12 +94,19 @@ font-family: 'Source Code Pro';
       <div class="row">
 
         <div class="col-lg-4">
-          <div class="well sidebar-nav" style="background-color: white; text-align: right; border: none; margin-top: -20px">
+          <div style="background-color: white; text-align: right; border: none">
             <h2>News</h2>
-            <% press_release.all.each do |status| %>
-              <h4><%= status.title %></h4>
-              <h6><%= status.created_at %></h6>
-              <h5><%= status.content %></h5>
+            <% @newsfeed.each do |status| %>
+              <% if status.has_attribute?("album_id")%>
+                <% if status.approval == true %>
+                  <h3 style="margin-right: 60px"><a href= "<%= article_path(status) %>" class="ajax_link"><%= status.album.title %></a></h3>
+                  <h6 style="margin-right: 60px"><%= status.created_at %></h6>
+                  <img src = <%= status.image %> height=50px width=50px style="float: right; margin-top: -60px"> 
+                <% end %>
+              <% else %>
+                <h3><%= status.title %></h3>
+                              <h6><%= status.created_at %></h6>
+              <% end %>
             <% end %>
             </ul>
           </div><!--/.well -->
@@ -90,34 +120,36 @@ font-family: 'Source Code Pro';
 
 <div class="col-lg-4">
 <div id = "wrap" style = "height: 350px; width: 350px; margin-left: auto; margin-right: auto">
-<div id = "currently_playing" style="border-style: transparent; border-radius: 100%; height: 350px; width: 350px; padding-top: 20px; background-image: url(<%= asset_path 'CD.png' %>); float: center; z-index: -5; position: absolute">
+
+<div id = "currently_playing" style="border-style: transparent; border-radius: 100%; height: 350px; width: 350px; padding-top: 35px; background-image: url(<%= asset_path 'vinyl.png' %>); float: center; z-index: -5; position: absolute">
 </div>
 
-<div id = "refreshable" style = "padding-top: 45px; color: yellow; margin-left: auto; margin-right: auto; border-radius: 100%">
+<!--padding top : how far the text is from the border of the disc -->
+<div id = "refreshable" style = "padding-top: 50px; color: yellow; margin-left: auto; margin-right: auto; border-radius: 100%">
 
 <% if @allowed_time > @time %>
 <!-- Regan's Radio Show -->
-<div id = "box" style="margin-left: auto; margin-right: auto">
-<center><p><strong><%=@track.artist %></strong></p>  "<%= @track.title %>"
-</center>
-</div>
-<% if @item_array_size != 0 %>
-<center><img src=<%= @item_album_artwork.first.artwork_url100 %> style = "height: 150px; border-radius: 100%; border: white solid 10px"></center>
-<% end %>
-  <center>
-  <% if @track.album != "" %>
-    <div id = "box" style="width: 150px">
-      <p><em><%= @track.album %></em></p>
+    <div id = "box" style="margin-left: auto; margin-right: auto">
+      <center><strong><%=@track.artist %></strong> <br />  "<%= @track.title %>"</center>
     </div>
-  <% end %>
-  </center>
 
-<% else %>
-  <center><div id = "DJicon"><%= image_tag("voice12(1).png") %></div></center>
-<% end %>
+    <% if @item_array_size != 0 %>
+        <center><img src=<%= @item_album_artwork.first.artwork_url100 %> style = "height: 160px; border-radius: 100%; border: white solid 10px"></center>
+    <% end %>
+  
+
+    <center>
+      <% if @track.album != "" %>
+          <div id = "box" style="width: 150px"><p><em><%= @track.album %></em></p></div>
+      <% end %>
+    </center>
+
+      <% else %>
+        <center><div id = "DJicon"><%= image_tag("press.svg") %></div></center>
+      <% end %>
 
 
-</div>
+    </div>
 </div>
 
 <center><%= render :partial => 'requests/form' %> </center>

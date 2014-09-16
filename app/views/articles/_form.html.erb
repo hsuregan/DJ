@@ -5,7 +5,7 @@
    
    <div class="col-lg-6">
 
-    <%= f.label :author %>
+    <%= f.label :Critic %>
     <div class="controls">
     <%= f.text_field :author, class: "form-control" %>
     </div>
@@ -38,7 +38,7 @@
 
     <%= f.label :rating %> 0 to 10
     <div class="controls"> 
-          <%= f.number_field :rating, :in => 0..10, class: "form-control" %>
+          <%= f.number_field :rating, :in => 0.0..10.0, class: "form-control" %>
     </div>
 
     <%= f.label :image %> URL
@@ -52,7 +52,7 @@
     <div class="control-group">
       <%= f.label :content %>
       <div class="controls">
-        <%= f.text_area :content, rows: "20", cols: "50", class: "form-control" %>
+        <%= f.text_area :content, rows: "22", cols: "50", class: "form-control" %>
       </div>
     </div>
   </div>

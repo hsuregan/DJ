@@ -11,6 +11,14 @@
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
     <![endif]-->
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400' rel='stylesheet' type='text/css'>
+<style>
+*
+{
+font-family: 'Source Sans Pro', sans-serif;
+}
+</style>
+
 
     <%= stylesheet_link_tag "application", :media => "all" %>
 
@@ -99,7 +107,7 @@
 
                 <% if current_user %>
                 <li>
-                  <%= link_to image_tag("outcoming1.svg"), session_path("current"), method: 'delete' %>
+                  <a data-method="delete" href="/sessions/current" rel="nofollow"><img alt="Outcoming1" src="/assets/outcoming1.svg" /><p>Logout</p></a>
                 </li>
                 <%end%>
 

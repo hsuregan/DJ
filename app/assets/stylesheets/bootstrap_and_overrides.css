@@ -43,8 +43,7 @@
 
 .navbar .nav > li:hover > a img {
 
- -webkit-filter: invert(100%);
- background-color: rgba(251,255,136,1.00);
+ background-color: yellow;
  border-radius: 100%;
  transition: background-color 1s ease;
 }

@@ -2,8 +2,8 @@ class ArticlesController < ApplicationController
 
 def index
        # @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results.first.artwork_url100
-	if params[:search] && (Artist.search_by(params[:search]).count != 0)
-			@articles = Artist.search_by(params[:search]).first.articles
+	if params[:search] && (Article.search_by(params[:search]).count != 0)
+		@articles = Article.search_by(params[:search])
 	else
 		@articles = Article.order(updated_at: :desc)
 	end
@@ -95,11 +95,36 @@ def update
 		end
 end
 
+def approve
+	@article = Article.find(params[:id])
+		if (session[:user_id])
+			@article.approval = true;
+			@article.save
+			UserMailer.article_email(@article.email).deliver
+			redirect_to root_path, notice: 'Article is Online'
+		else
+			redirect_to @article, notice: "No Access Rights"
+		end
+end
+
+def destroy
+        @article = Article.find(params[:id])   
+       	if session[:user_id]
+       		@article.delete
+       		redirect_to action: "index"
+       	else
+			redirect_to @article, notice: "you have no right! you did not write!"
+       	end
+  end
+
+
 private
 
 def article_params
 	params.require(:article).permit(:author, :email, :content, :image, :artist_ids, :album_ids, :rating)
 end
+
+
 
 def album_params
 	params.require(:album).permit(:title, :genre, :year)

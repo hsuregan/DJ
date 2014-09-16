@@ -5,6 +5,25 @@ class WelcomeController < ApplicationController
   def index
   	list_songs
     @request = Request.new
+    count = Article.count - 1
+    @newsfeed = News.last(3)
+
+    stopper = 0;
+
+    while count != 0 
+      review = Article.all.sort[count]
+      if review.approval == true
+        @newsfeed.push(review)
+        stopper = stopper + 1
+      end
+      if stopper == 3
+        break
+      end
+      count = count - 1
+    end
+
+    @newsfeed = @newsfeed.sort_by { |obj| obj.updated_at }
+    @newsfeed.reverse!
   end
 
 

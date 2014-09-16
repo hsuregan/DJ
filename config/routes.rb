@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get 'login', to: 'sessions#new', as: 'login'
 
+  get 'articles/:id/approve' => 'articles#approve', as: :articles_approve
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

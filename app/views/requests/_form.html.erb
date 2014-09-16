@@ -1,8 +1,8 @@
 <%= form_for @request, class: "form-control input-lg", :url => url_for(:controller => 'requests') do |f| %>
 
-    <p><%= f.text_field :title, class: "form-control", placeholder: "Song/Joke/Opinion/Fact/Fact-Check/Etc"%></p>
+    <p><%= f.text_field :title, class: "form-control", placeholder: "Song, Joke, Suggestion, Hack, Fact, Fact-Check, Etc"%></p>
 
-    <%= f.text_field :requester, class: "form-control", placeholder: "Your Name" %>
+    <%= f.text_field :requester, class: "form-control", placeholder: "Your Full Name" %>
 
 
      <p><div class="form-actions">
