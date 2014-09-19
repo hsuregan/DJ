@@ -83,8 +83,8 @@ end
 def update
 		@article = Article.find(params[:id])
 		if (session[:user_id])
-			if @article.update(params.require(:article).permit(:approval))
-				UserMailer.article_email(@article.email).deliver
+			if @article.update(article_params)
+				@article.save
 				redirect_to root_path, notice: 'Article is Online'
 			else
 				render "edit"
@@ -113,7 +113,7 @@ def destroy
        		@article.delete
        		redirect_to action: "index"
        	else
-			redirect_to @article, notice: "you have no right! you did not write!"
+			redirect_to @article, notice: "No Access Rights"
        	end
   end
 

@@ -10,13 +10,13 @@ class WelcomeController < ApplicationController
 
     stopper = 0;
 
-    while count != 0 
+    while count >= 0 
       review = Article.all.sort[count]
       if review.approval == true
         @newsfeed.push(review)
         stopper = stopper + 1
       end
-      if stopper == 3
+      if stopper == 2
         break
       end
       count = count - 1
@@ -33,6 +33,8 @@ class WelcomeController < ApplicationController
     @itunes = ITunes::Client.new    
 
     @recent_tracks = Track.order(updated_at: :desc).limit(10)
+
+  if @item != nil
     @track = Track.new({"title" => @item.name, 
               "artist" => @item.artist,
               "album" => @item.album})
@@ -58,9 +60,15 @@ class WelcomeController < ApplicationController
 
     #@item_album_artwork_ucla = @itunes.music("#{@track_ucla.artist} #{@track_ucla.title}").results
     #@item_array_size_ucla = @item_album_artwork_ucla.size
+  end
 
     @time = Time.new.to_i
-    @allowed_time = Track.last.created_at.to_i + 360
+
+    if Track.count != 0 #resetting the database for tracks warrants this - if/else statement
+      @allowed_time = Track.last.created_at.to_i + 360
+    else
+      @allowed_time = @time
+    end
 
 
     #@item_album_artwork_ucla = @itunes.music("#{@track_ucla.artist} #{@track_ucla.title}").results

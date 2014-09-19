@@ -1,5 +1,5 @@
 <ol>
 <% @requests.each do |request| %>
-<li><%= request.title %></li>
+<li><%= request.requester %> -> <%= request.title %></li>
 <% end %>
 </ol>

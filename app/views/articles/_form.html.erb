@@ -15,6 +15,8 @@
     <%= f.text_field :email, class: "form-control" %>
     </div>
   
+
+  <% if @article.new_record? %>
     <%= f.label :artist %>
     <div class="controls">
       <input class = "form-control" id = "artists" <%= text_field(:artist, :name) %>
@@ -34,6 +36,8 @@
     <div class="controls">
       <input class = "form-control" <%= number_field(:album, :year) %>
     </div>
+
+    <% end %>
 
 
     <%= f.label :rating %> 0 to 10

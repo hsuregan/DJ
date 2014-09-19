@@ -13,7 +13,7 @@ class RequestsController < ApplicationController
   def create
   	@request = Request.new(request_params)
   	if @request.save
-    	redirect_to root_path
+    	redirect_to root_path, notice: "An Email Confirmation Was Sent To You.  Reply 'Approve' To Activate Request."
     else
     	redirect_to root_path, notice: "Request failed - both fields must be filled"
     end
@@ -23,7 +23,7 @@ class RequestsController < ApplicationController
 
   private
   def request_params
-    params.require(:request).permit(:title, :requester)
+    params.require(:request).permit(:title, :requester, :email)
   end
 
 

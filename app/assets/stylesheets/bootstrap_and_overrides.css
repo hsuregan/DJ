@@ -6,6 +6,10 @@
   =require twitter-bootstrap-static/fontawesome
   */
   /* change base */
+body
+{
+}
+
 
 #currently_playing
 {

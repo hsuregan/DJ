@@ -94,7 +94,10 @@ a:active {
         <br /><br />
       <% end %>
 
-      <% if session[:user_id] %>
+      <% if session[:user_id] %>  <!--such that 'x' is an article -->
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_article_path(x), :class => 'btn btn-mini', :class => 'btn btn-mini btn-danger' %>
+
         <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       article_path(x),
                       :method => :delete,

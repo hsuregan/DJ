@@ -25,6 +25,7 @@ class NewsController < ApplicationController
 
 	def show
 		@new = News.find(params[:id])
+		render layout: false
 	end
 
 	private

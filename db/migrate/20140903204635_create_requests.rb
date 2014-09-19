@@ -3,6 +3,7 @@ class CreateRequests < ActiveRecord::Migration
     create_table :requests do |t|
       t.string :title
       t.string :requester
+      t.string :email
 
       t.timestamps
     end

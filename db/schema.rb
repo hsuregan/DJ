@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140903204635) do
   create_table "requests", force: true do |t|
     t.string   "title"
     t.string   "requester"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,3 +1,5 @@
+
+<!-- Refreshing the Currently Playing -->
 <script>
 $(document).ready(function() {
 
@@ -26,7 +28,7 @@ setInterval( function() {
 </script>
 
 
-
+<!--Rotating the Vinyl -->
 <script>
 $(function() {
     var $elie = $("#currently_playing"), degree = 0, timer;
@@ -47,6 +49,7 @@ $(function() {
 </script>
 
 
+<!-- Showing Article as floating html-->
 <script type="text/javascript">
   $(document).ready(function() {
   $('.ajax_link').click(function(event) {
@@ -55,6 +58,8 @@ $(function() {
   $.get(url, function(htmloutput) {
   $('#article_show').html(htmloutput);
   $('#modal_article').modal('show');
+
+
   });
 
   });
@@ -78,6 +83,8 @@ $(function() {
 </div>
 
 
+
+
 <style>
 
 #DJicon img
@@ -99,12 +106,13 @@ $(function() {
             <% @newsfeed.each do |status| %>
               <% if status.has_attribute?("album_id")%>
                 <% if status.approval == true %>
-                  <h3 style="margin-right: 60px"><a href= "<%= article_path(status) %>" class="ajax_link"><%= status.album.title %></a></h3>
-                  <h6 style="margin-right: 60px"><%= status.created_at %></h6>
-                  <img src = <%= status.image %> height=50px width=50px style="float: right; margin-top: -60px"> 
+                  <h3 style="margin-right: 80px"><a href= "<%= article_path(status) %>" class="ajax_link"><%= status.album.title %></a></h3>
+                  <h5 style="margin-right: 80px">Reviewed By <%= status.author %> </h5>
+                  <h6 style="margin-right: 80px"><%= status.created_at %></h6>
+                  <img src = <%= status.image %> height=75px width=75px style="float: right; margin-top: -80px"> 
                 <% end %>
               <% else %>
-                <h3><%= status.title %></h3>
+                <h3><a href="<%= news_path(status) %>" class="ajax_link"> <%= status.title %></a></h3>
                               <h6><%= status.created_at %></h6>
               <% end %>
             <% end %>

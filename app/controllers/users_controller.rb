@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 def new
-	if current_user != nil && current_user.email == "hsuregan@gmail.com"
+	if (current_user != nil && current_user.email == "hsuregan@gmail.com") || User.count == 0
 		@user = User.new
 	else
 		redirect_to root_path
