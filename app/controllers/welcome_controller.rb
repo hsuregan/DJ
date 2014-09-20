@@ -24,6 +24,14 @@ class WelcomeController < ApplicationController
 
     @newsfeed = @newsfeed.sort_by { |obj| obj.updated_at }
     @newsfeed.reverse!
+
+    if request.xhr?
+      render partial: "refresh"
+    else
+      render "index"
+    end
+
+
   end
 
 

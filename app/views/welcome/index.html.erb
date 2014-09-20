@@ -1,30 +1,21 @@
 
 <!-- Refreshing the Currently Playing -->
 <script>
+function makeAjaxCall() {
+
+  $.get(document.URL, function(resp) { 
+  $('#refreshable').html(resp);
+ });
+}
+
+
+
 $(document).ready(function() {
 
-
-
-  var replacementContent = function() {
-    $.ajax( {
-     type : 'GET',
-     url : '#item_path',
-     dataType : 'html',
-     success : function(data) {
-         $('#refreshable').html(data);
-     },
-
-  error: function(XMLHttpRequest, testStatus, errorThrown) {
-     alert('Error!');
-   }
+  setInterval(function(){ makeAjaxCall(); }, 150000);
 
    });
 
-}
-setInterval( function() {
-  $("#refreshable").load(location.href+" #refreshable>*", "");
-}, 10000);
-});
 </script>
 
 
@@ -127,6 +118,7 @@ $(function() {
 
 
 <div class="col-lg-4">
+
 <div id = "wrap" style = "height: 350px; width: 350px; margin-left: auto; margin-right: auto">
 
 <div id = "currently_playing" style="border-style: transparent; border-radius: 100%; height: 350px; width: 350px; padding-top: 35px; background-image: url(<%= asset_path 'vinyl.png' %>); float: center; z-index: -5; position: absolute">
@@ -135,29 +127,14 @@ $(function() {
 <!--padding top : how far the text is from the border of the disc -->
 <div id = "refreshable" style = "padding-top: 50px; color: yellow; margin-left: auto; margin-right: auto; border-radius: 100%">
 
-<% if @allowed_time > @time %>
-<!-- Regan's Radio Show -->
-    <div id = "box" style="margin-left: auto; margin-right: auto">
-      <center><strong><%=@track.artist %></strong> <br />  "<%= @track.title %>"</center>
-    </div>
-
-    <% if @item_array_size != 0 %>
-        <center><img src=<%= @item_album_artwork.first.artwork_url100 %> style = "height: 160px; border-radius: 100%; border: white solid 10px"></center>
-    <% end %>
-  
-
-    <center>
-      <% if @track.album != "" %>
-          <div id = "box" style="width: 150px"><p><em><%= @track.album %></em></p></div>
-      <% end %>
-    </center>
-
-      <% else %>
-        <center><div id = "DJicon"><%= image_tag("press.svg") %></div></center>
-      <% end %>
+<%= render :partial => 'refresh' %>
 
 
-    </div>
+</div>
+
+
+
+
 </div>
 
 <center><%= render :partial => 'requests/form' %> </center>

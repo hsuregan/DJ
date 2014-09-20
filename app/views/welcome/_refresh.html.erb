@@ -1,0 +1,20 @@
+<% if @allowed_time > @time %>
+<!-- Regan's Radio Show -->
+    <div id = "box" style="margin-left: auto; margin-right: auto">
+      <center><strong><%=@track.artist %></strong> <br />  "<%= @track.title %>"</center>
+    </div>
+
+    <% if @item_array_size != 0 %>
+        <center><img src=<%= @item_album_artwork.first.artwork_url100 %> style = "height: 160px; border-radius: 100%; border: white solid 10px"></center>
+    <% end %>
+  
+
+    <center>
+      <% if @track.album != "" %>
+          <div id = "box" style="width: 150px"><p><em><%= @track.album %></em></p></div>
+      <% end %>
+    </center>
+
+      <% else %>
+        <center><div id = "DJicon"><%= image_tag("press.svg") %></div></center>
+      <% end %>
