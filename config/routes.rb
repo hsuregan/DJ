@@ -17,10 +17,14 @@ Rails.application.routes.draw do
 
   get 'login', to: 'sessions#new', as: 'login'
 
+  get 'review', to: 'articles#new', as: 'review'
+
+  get 'critics', to: 'articles#index', as: 'critics'
+
   get 'articles/:id/approve' => 'articles#approve', as: :articles_approve
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  #   get 'products/:id/purchase' => 'catalo#ggpurchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

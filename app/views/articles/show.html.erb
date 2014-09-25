@@ -1,11 +1,17 @@
 
 
 <%- model_class = Article -%>
-<div class="page-header"> <center><h2>"<%= @article.album.title%>"</h2> <h3><%= @article.artist.name %></h3></br> Reviewed By <strong><%= @article.author %></strong></center></div>
+
+<img src = <%= @article.image %> width= 250px style="float: left">
+
+<div class="page-header"> <h2><%= @article.album.title%></h2> <em><h3><%= @article.artist.name %></h3></em> Reviewed By <strong><%= @article.author %></strong></div>
 
 <dl class="dl-horizontal">
 
 <%= simple_format(@article.content.gsub(/\n/, '<br/>')) %>
+<br />
+<center>Grade - <%= @article.rating %> </center>
 </dl>
+
 
 

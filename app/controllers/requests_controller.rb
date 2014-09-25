@@ -13,9 +13,10 @@ class RequestsController < ApplicationController
   def create
   	@request = Request.new(request_params)
   	if @request.save
-    	redirect_to root_path, notice: "An Email Confirmation Was Sent To You.  Reply 'Approve' To Activate Request."
+      UserMailer.recieved_request(@request.email).deliver
+    	redirect_to root_path, notice: "An Email Confirmation Was Sent To You.  Reply 'Approve' To Authenticate Request."
     else
-    	redirect_to root_path, notice: "Request failed - both fields must be filled"
+    	redirect_to root_path, notice: "Request failed - all fields must be filled"
     end
 
   end

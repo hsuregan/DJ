@@ -5,7 +5,16 @@ class WelcomeController < ApplicationController
   def index
   	list_songs
     @request = Request.new
-    count = Article.count - 1
+
+  @newsfeed = Article.last(5) + News.last(5) #merges two tables 
+  @newsfeed = @newsfeed.sort_by {|obj| obj.updated_at}
+  @newsfeed = @newsfeed.last(5).reverse!
+
+
+
+
+=begin -> higher efficiency but drawbacks in that a set of 3 news and 2 articles even if the 3rd article came before one of the 3 news and vice versa
+   count = Article.count - 1
     @newsfeed = News.last(3)
 
     stopper = 0;
@@ -24,13 +33,13 @@ class WelcomeController < ApplicationController
 
     @newsfeed = @newsfeed.sort_by { |obj| obj.updated_at }
     @newsfeed.reverse!
+=end
 
     if request.xhr?
       render partial: "refresh"
     else
       render "index"
     end
-
 
   end
 
@@ -40,7 +49,7 @@ class WelcomeController < ApplicationController
     #@item_ucla = Scrobbler::User.new('uclaradio').recent_tracks.first
     @itunes = ITunes::Client.new    
 
-    @recent_tracks = Track.order(updated_at: :desc).limit(10)
+    @recent_tracks = Track.order(updated_at: :desc).limit(15)
 
   if @item != nil
     @track = Track.new({"title" => @item.name, 
@@ -68,6 +77,8 @@ class WelcomeController < ApplicationController
 
     #@item_album_artwork_ucla = @itunes.music("#{@track_ucla.artist} #{@track_ucla.title}").results
     #@item_array_size_ucla = @item_album_artwork_ucla.size
+  else
+    @track = Track.last
   end
 
     @time = Time.new.to_i

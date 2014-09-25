@@ -12,7 +12,7 @@ function makeAjaxCall() {
 
 $(document).ready(function() {
 
-  setInterval(function(){ makeAjaxCall(); }, 150000);
+  setInterval(function(){ makeAjaxCall(); }, 5000);
 
    });
 
@@ -49,8 +49,6 @@ $(function() {
   $.get(url, function(htmloutput) {
   $('#article_show').html(htmloutput);
   $('#modal_article').modal('show');
-
-
   });
 
   });
@@ -114,15 +112,28 @@ $(function() {
 
 
         
+<!--button for playing radio-->
+<script>
+function myFunction() {
+    var myWindow = window.open("http://stream.uclaradio.com:8000/listen", "http://stream.uclaradio.com:8000/listen", "width=200, height=100");
+}
+</script>
+
+
+
+
 
 
 
 <div class="col-lg-4">
-
-<div id = "wrap" style = "height: 350px; width: 350px; margin-left: auto; margin-right: auto">
+<center>
+<button style="border: none; background-color: transparent" onclick="myFunction()" class="play_border">
+<div id = "wrap" style = "height: 350px; width: 350px; margin-left: -5px; margin-top: -2px">
 
 <div id = "currently_playing" style="border-style: transparent; border-radius: 100%; height: 350px; width: 350px; padding-top: 35px; background-image: url(<%= asset_path 'vinyl.png' %>); float: center; z-index: -5; position: absolute">
 </div>
+
+
 
 <!--padding top : how far the text is from the border of the disc -->
 <div id = "refreshable" style = "padding-top: 50px; color: yellow; margin-left: auto; margin-right: auto; border-radius: 100%">
@@ -134,10 +145,12 @@ $(function() {
 
 
 
-
 </div>
 
-<center><%= render :partial => 'requests/form' %> </center>
+</button>
+</center>
+
+<div id = "request" style="margin-top: 20px"><center><%= render :partial => 'requests/form' %> </center></div>
 
 </div>
 
@@ -150,8 +163,7 @@ $(function() {
             <h2>Recent Tracks</h2>
             <table>
               <% @recent_tracks.each do |t|%>
-                <tr><td>"<%=t.title%>" <b><%=t.artist %></b> </td></tr>
-              <tr><td> <%= t.created_at.strftime('%l:%M %p %m/%d') %></td></tr>
+                <tr><td><%= t.created_at.strftime('%l:%M %p %m/%d') %>: "<%=t.title%>" <b><%=t.artist %></b> </td></tr>
               <% end %>
             </table>
   
@@ -162,6 +174,7 @@ $(function() {
 
 
     </div> <!-- /container -->
+
 
 
 

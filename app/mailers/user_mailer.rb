@@ -15,4 +15,8 @@ class UserMailer < ActionMailer::Base
     def written_article
       mail(:to => 'uclaradio.djhsu@gmail.com', :subject => 'Someone has posted an article')
     end
+
+    def recieved_request(address)
+      mail(:to=> address, :subject => "You recently posted a request on Ucladj")
+    end
 end

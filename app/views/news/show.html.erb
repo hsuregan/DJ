@@ -1,2 +1,10 @@
-<%= @new.title %>
-<%= @new.content %>
+
+
+
+
+<div class="page-header"> <center><h2><%= @new.title%></h2> </center></div>
+
+<dl class="dl-horizontal">
+
+<%= simple_format(@new.content.gsub(/\n/, '<br/>')) %>
+</dl>

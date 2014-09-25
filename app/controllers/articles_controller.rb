@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
 def index
        # @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results.first.artwork_url100
 	if params[:search] && (Article.search_by(params[:search]).count != 0)
-		@articles = Article.search_by(params[:search])
+		@articles = Article.search_by(params[:search]).sort_by { |obj| obj.rating }
+		@articles.reverse!
 	else
 		@articles = Article.order(updated_at: :desc)
 	end
