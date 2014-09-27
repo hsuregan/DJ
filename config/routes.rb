@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :articles
   resources :news
   resources :requests
+  resources :concert_reviews #do i need this?
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -17,9 +18,15 @@ Rails.application.routes.draw do
 
   get 'login', to: 'sessions#new', as: 'login'
 
-  get 'review', to: 'articles#new', as: 'review'
+  get 'signup', to: 'users#new', as: 'signup'
+
+  get 'reviews', to: 'articles#reviews', as: 'reviews'
 
   get 'critics', to: 'articles#index', as: 'critics'
+
+  get 'autocomplete_artist', to: 'articles#autocomplete_artist', as: 'autocomplete_artist'
+
+  get 'autocomplete_album', to: 'articles#autocomplete_album', as: 'autocomplete_album'
 
   get 'articles/:id/approve' => 'articles#approve', as: :articles_approve
 

@@ -19,22 +19,22 @@
   <% if @article.new_record? %>
     <%= f.label :artist %>
     <div class="controls">
-      <input class = "form-control" id = "artists" <%= text_field(:artist, :name) %>
+      <%= text_field(:artist, :name, :class => "form-control") %>
     </div>
     
     <%= f.label :album %>
     <div class="controls">
-      <input class = "form-control" id="albums" <%= text_field(:album, :title) %>
+      <%= text_field(:album, :title, :class => "form-control") %>
     </div>
 
     <%= f.label :album %> Genre
     <div class="controls">
-      <input class = "form-control" <%= text_field(:album, :genre) %>
+      <%= text_field(:album, :genre, :class => "form-control") %>
     </div>
     
     <%= f.label :year %> Released
     <div class="controls">
-      <input class = "form-control" <%= number_field(:album, :year) %>
+      <%= number_field(:album, :year, :class => "form-control") %>
     </div>
 
     <% end %>
@@ -80,8 +80,7 @@
   </div>
 
 
-
-
 <% end %>
+
 
 

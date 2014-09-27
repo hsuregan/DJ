@@ -2,7 +2,7 @@
 
 <%- model_class = Article -%>
 
-<img src = <%= @article.image %> width= 250px style="float: left">
+<img src = <%= @article.image %> width= 250px style="float: left; border: solid transparent 7px">
 
 <div class="page-header"> <h2><%= @article.album.title%></h2> <em><h3><%= @article.artist.name %></h3></em> Reviewed By <strong><%= @article.author %></strong></div>
 

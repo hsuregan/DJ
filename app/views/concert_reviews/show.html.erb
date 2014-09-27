@@ -1,0 +1,16 @@
+
+
+<%- model_class = ConcertReview -%>
+
+<img src = <%= @concertreview.image %> width= 250px style="float: left; border: solid transparent 7px">
+
+<div class="page-header"> <em><h3><%= @concertreview.artist.name %></h3></em> Reviewed By <strong><%= @concertreview.author %></strong></div>
+
+<dl class="dl-horizontal">
+
+<%= simple_format(@concertreview.content.gsub(/\n/, '<br/>')) %>
+<br />
+</dl>
+
+
+

@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140925215329) do
     t.string   "title"
     t.string   "location"
     t.string   "author"
+    t.string   "email"
     t.string   "image"
     t.boolean  "approval"
     t.integer  "artist_id"

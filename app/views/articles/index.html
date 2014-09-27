@@ -114,6 +114,56 @@ a:active {
 </div>
 
 
+
+
+<div class="row">
+<div class="col-lg-12">
+<div id= "Recent_Reviews" style="margin-left:auto; margin-right: auto">
+<center><h1>Concert Reviews</h1></center>
+<br />
+
+<div class="table-responsive" style="overflow-x: auto">
+  
+  <table class="table" width="500">
+  <tr>
+  <% @concertreviews.each do |x| %>
+  <td align="center">
+  <% if (session[:user_id] || x.approval == true) %>
+  <a href="<%= concert_review_path(x)%>" class="ajax_link">
+
+    <%= image_tag(x.image, :size => "150x150")%>
+
+
+   </a>
+
+
+         <br />
+          <em><%=x.artist.name %></em> </br>
+          <%=x.author%>
+        <br />
+
+        
+
+
+
+    <% end %>
+    
+
+    </td>
+  <% end %>
+  </tr>
+  </table>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
 <div class="row">
 <center>
 <div class="col-lg-12">
@@ -127,7 +177,7 @@ a:active {
         <button class="btn btn-default" type="submit">Search</button>
       </span>
 
-      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Artist, Album, or Author" %>
+      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Album, Artist, Critic, or Venue" %>
       
  
 

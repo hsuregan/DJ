@@ -4,11 +4,12 @@ class CreateConcertReviews < ActiveRecord::Migration
       t.string :title
       t.string :location
       t.string :author
+      t.string :email
       t.string :image
       t.boolean :approval
       t.integer :artist_id
       t.text :content
-      
+
       t.timestamps
     end
   end

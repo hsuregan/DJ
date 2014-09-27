@@ -1,6 +1,7 @@
 class Artist < ActiveRecord::Base
 	has_many :albums 
 	has_many :articles
+	has_many :concert_reviews
 	validates_uniqueness_of :name
 
 	scope :search_by, -> (search_term) { where("name ilike ?", "%#{search_term}%").order("created_at DESC") }

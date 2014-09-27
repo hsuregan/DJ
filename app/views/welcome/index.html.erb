@@ -39,6 +39,17 @@ $(function() {
 
 </script>
 
+<style>
+
+body {
+    background-image: url(/assets/background2.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-right: 20px;
+
+}
+</style>
+
 
 <!-- Showing Article as floating html-->
 <script type="text/javascript">
@@ -87,18 +98,21 @@ $(function() {
 
 
     <div class="container">
-      <div class="row">
+      <div class="row" style="margin-top: 40px">
 
         <div class="col-lg-4">
-          <div style="background-color: white; text-align: right; border: none">
-            <h2>News</h2>
+          <div style="background-color:rgba(255, 255, 255, 0.8); text-align: right; height: 550px; border-radius: 0px; margin-top: 10px; border:  white 5px; padding-top: 5px
+
+
+          ">
+            <center><h2>What's New</h2></center>
             <% @newsfeed.each do |status| %>
               <% if status.has_attribute?("album_id")%>
                 <% if status.approval == true %>
-                  <h3 style="margin-right: 80px"><a href= "<%= article_path(status) %>" class="ajax_link"><%= status.album.title %></a></h3>
-                  <h5 style="margin-right: 80px">Reviewed By <%= status.author %> </h5>
-                  <h6 style="margin-right: 80px"><%= status.created_at %></h6>
-                  <img src = <%= status.image %> height=75px width=75px style="float: right; margin-top: -80px"> 
+                  <h3 style="margin-right: 90px"><a href= "<%= article_path(status) %>" class="ajax_link"><%= status.album.title %></a></h3>
+                  <h5 style="margin-right: 90px">Reviewed By <%= status.author %> </h5>
+                  <h6 style="margin-right: 90px"><%= status.created_at %></h6>
+                  <img src = <%= status.image %> height=75px width=75px style="float: right; margin-top: -80px; margin-right: 10px;"> 
                 <% end %>
               <% else %>
                 <h3><a href="<%= news_path(status) %>" class="ajax_link"> <%= status.title %></a></h3>
@@ -125,10 +139,10 @@ function myFunction() {
 
 
 
-<div class="col-lg-4">
+<div class="col-lg-4" style="margin-top: 30px">
 <center>
 <button style="border: none; background-color: transparent" onclick="myFunction()" class="play_border">
-<div id = "wrap" style = "height: 350px; width: 350px; margin-left: -5px; margin-top: -2px">
+<div id = "wrap" style = "height: 350px; width: 350px; margin-left: -5px; margin-top: -2px;">
 
 <div id = "currently_playing" style="border-style: transparent; border-radius: 100%; height: 350px; width: 350px; padding-top: 35px; background-image: url(<%= asset_path 'vinyl.png' %>); float: center; z-index: -5; position: absolute">
 </div>
@@ -160,7 +174,8 @@ function myFunction() {
 
 -->
       <div class="col-lg-4">
-            <h2>Recent Tracks</h2>
+      <div style="background-color:rgba(255, 255, 255, 0.7); text-align: right; height: 550px; border-radius: 0px; margin-top: 10px; border: white 5px; padding-top: 5px">
+            <center><h2>Recent Tracks</h2></center>
             <table>
               <% @recent_tracks.each do |t|%>
                 <tr><td><%= t.created_at.strftime('%l:%M %p %m/%d') %>: "<%=t.title%>" <b><%=t.artist %></b> </td></tr>
@@ -169,7 +184,7 @@ function myFunction() {
   
           </div>
         </div>
-
+        </div>
       </div><!--/row-->
 
 

@@ -2,13 +2,41 @@ class ArticlesController < ApplicationController
 
 def index
        # @item_album_artwork = @itunes.music("#{@track.artist} #{@track.title}").results.first.artwork_url100
-	if params[:search] && (Article.search_by(params[:search]).count != 0)
+	if params[:search] && (Article.search_by(params[:search]).count != 0) 
 		@articles = Article.search_by(params[:search]).sort_by { |obj| obj.rating }
 		@articles.reverse!
 	else
 		@articles = Article.order(updated_at: :desc)
 	end
+
+	if params[:search] && (ConcertReview.search_by(params[:search]).count != 0)
+		@concertreviews = ConcertReview.search_by(params[:search])
+	else
+		@concertreviews = ConcertReview.order(updated_at: :desc)
+	end
+
+
 end
+
+
+def autocomplete_artist
+  @artists = Artist.search_by(params[:term])
+  json_array = []
+  @artists.each do |a|
+  	json_array << {:id => a.id, :label => "#{a.id} - #{a.name}", :value => a.name }
+  end
+  render json: json_array
+end
+
+def autocomplete_album
+  @albums = Album.search_by(params[:term])
+  json_array = []
+  @albums.each do |a|
+  	json_array << {:id => a.id, :label => "#{a.id} - #{a.title}", :value => a.title }
+  end
+  render json: json_array
+end	
+
 
 def new
 	@article = Article.new
@@ -36,13 +64,14 @@ def create
 	@artist = Artist.new(artist_params)
 	@artist.name = @artist.name.split.map(&:capitalize).join(' ').rstrip.lstrip
 
-	if(Artist.where(:name => @artist.name).count == 0)
-		UserMailer.written_article.deliver
+	#save artist into database
+	if(Artist.where(:name => @artist.name).count == 0) 
 		@artist.save
 	else
 		@artist = Artist.where(:name => @artist.name)[0]
 	end
 
+	#save album into database
 	if (Album.where(:title => @album.title).count == 0)
 		@album.artist = @artist
 		@album.save
@@ -52,7 +81,8 @@ def create
 
 	@article = Article.new(article_params)
 
-	if (@article.save)	
+	if (@article.save)
+		UserMailer.written_article.deliver	
 		@article.artist = @artist
 		@article.album = @album
 		@article.save
@@ -80,6 +110,11 @@ def edit
 		#@article = Article.find(params[:id])
 		
 end
+
+def reviews
+    render layout: false
+end
+
 
 def update
 		@article = Article.find(params[:id])
