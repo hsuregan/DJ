@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
   	list_songs
     @request = Request.new
 
-  @newsfeed = Article.last(5) + News.last(5) #merges two tables 
+  @newsfeed = Article.last(5) + News.last(5) + ConcertReview.last(5) #merges two tables 
   @newsfeed = @newsfeed.sort_by {|obj| obj.updated_at}
   @newsfeed = @newsfeed.last(5).reverse!
 
@@ -49,7 +49,7 @@ class WelcomeController < ApplicationController
     #@item_ucla = Scrobbler::User.new('uclaradio').recent_tracks.first
     @itunes = ITunes::Client.new    
 
-    @recent_tracks = Track.order(updated_at: :desc).limit(15)
+    @recent_tracks = Track.order(updated_at: :desc).limit(10)
 
   if @item != nil
     @track = Track.new({"title" => @item.name, 

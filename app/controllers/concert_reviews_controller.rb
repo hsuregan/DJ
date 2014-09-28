@@ -42,7 +42,68 @@ def show
 	render layout: false
 end
 
+def approve
+	@concertreview = ConcertReview.find(params[:id])
+		if (session[:user_id])
+			@concertreview.approval = true;
+			@concertreview.save
+			UserMailer.article_email(@concertreview.email).deliver
+			redirect_to root_path, notice: 'Article is Online'
+		else
+			redirect_to @article, notice: "No Access Rights"
+		end
+end
 
+def deny
+	@concertreview = ConcertReview.find(params[:id])
+		if (session[:user_id])
+			@concertreview.approval = false;
+			@concertreview.save 
+			redirect_to root_path, notice: 'Article has been taken Offline'
+		else
+			redirect_to @concertreview, notice: 'No Access Rights'
+		end
+end
+
+
+def edit
+		@concertreview = ConcertReview.find(params[:id])
+		if session[:user_id] == nil
+			redirect_to root_path, notice: "No Access Rights"
+		end
+	
+		
+		#return RedirectToAction("Index", model);
+
+		#@article = Article.find(params[:id])
+		
+end
+
+def update
+		@concertreview = ConcertReview.find(params[:id])
+		if (session[:user_id])
+			if @concertreview.update(concertreview_params)
+				@concertreview.save
+				redirect_to root_path, notice: 'Article is Online'
+			else
+				render "edit"
+			end
+		else
+			redirect_to @concertreview, notice: "No Access Rights"
+			
+		end
+end
+
+
+def destroy
+        @concertreview = ConcertReview.find(params[:id])   
+       	if session[:user_id]
+       		@concertreview.delete
+       		redirect_to action: "index"
+       	else
+			redirect_to @concertreview, notice: "No Access Rights"
+       	end
+  end
 
 private
 

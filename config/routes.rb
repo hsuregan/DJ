@@ -30,6 +30,12 @@ Rails.application.routes.draw do
 
   get 'articles/:id/approve' => 'articles#approve', as: :articles_approve
 
+  get 'articles/:id/deny' => 'articles#deny', as: :articles_deny
+
+  get 'concert_reviews/:id/approve' => 'concert_reviews#approve', as: :concert_reviews_approve
+    get 'concert_reviews/:id/deny' => 'concert_reviews#deny', as: :concert_reviews_deny
+
+
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalo#ggpurchase', as: :purchase
 

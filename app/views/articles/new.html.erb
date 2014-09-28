@@ -1,3 +1,34 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+  $('.ajax_link').click(function(event) {
+  event.preventDefault();
+  var url = $(this).attr('href');
+  $.get(url, function(htmloutput) {
+  $('#article_show').html(htmloutput);
+  $('#modal_article').modal('show');
+  });
+
+  });
+  })
+</script>
+
+<div class="modal fade" id="modal_article" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+  
+  <div class="modal-body">
+  <div id="article_show"></div>
+  </div>
+  
+  <div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+  
+  </div>
+  </div>
+</div>
+
+
 <script>
 $(document).ready(function() {
 

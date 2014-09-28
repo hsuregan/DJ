@@ -45,7 +45,8 @@ body {
     background-image: url(/assets/background2.png);
     background-size: 100%;
     background-repeat: no-repeat;
-    margin-right: 20px;
+    background-attachment: fixed;
+
 
 }
 </style>
@@ -101,20 +102,33 @@ body {
       <div class="row" style="margin-top: 40px">
 
         <div class="col-lg-4">
-          <div style="background-color:rgba(255, 255, 255, 0.8); text-align: right; height: 550px; border-radius: 0px; margin-top: 10px; border:  white 5px; padding-top: 5px
-
-
+          <div style="background-color:rgba(255, 255, 255, 0.8); text-align: right; height: 700px; border-radius: 0px; margin-top: 10px; border:  white 5px; padding-top: 5px
           ">
             <center><h2>What's New</h2></center>
             <% @newsfeed.each do |status| %>
+
               <% if status.has_attribute?("album_id")%>
                 <% if status.approval == true %>
-                  <h3 style="margin-right: 90px"><a href= "<%= article_path(status) %>" class="ajax_link"><%= status.album.title %></a></h3>
+                  <h4 style="margin-right: 90px"><a href= "<%= article_path(status) %>" class="ajax_link"><%= status.album.title %></a></h4>
                   <h5 style="margin-right: 90px">Reviewed By <%= status.author %> </h5>
                   <h6 style="margin-right: 90px"><%= status.created_at %></h6>
                   <img src = <%= status.image %> height=75px width=75px style="float: right; margin-top: -80px; margin-right: 10px;"> 
                 <% end %>
+
+              <%elsif  status.has_attribute?("location") %>
+                <% if status.approval == true %>
+                  <h4 style="margin-left: 90px; text-align: left"><a href= "<%= concert_review_path(status) %>" class="ajax_link"><%= status.title %></a></h4>
+                  <h5 style="margin-left: 90px; text-align: left; ">Reviewed By <%= status.author %> </h5>
+                  <h6 style="margin-left: 90px; text-align: left; "><%= status.created_at %></h6>
+                  <img src = <%= status.image %> height=75px width=75px style="float: left; margin-top: -80px; margin-left: 10px;"> 
+                <% end %>
+
+
               <% else %>
+            
+
+
+
                 <h3><a href="<%= news_path(status) %>" class="ajax_link"> <%= status.title %></a></h3>
                               <h6><%= status.created_at %></h6>
               <% end %>
@@ -173,14 +187,19 @@ function myFunction() {
 
 
 -->
+
+
+
       <div class="col-lg-4">
-      <div style="background-color:rgba(255, 255, 255, 0.7); text-align: right; height: 550px; border-radius: 0px; margin-top: 10px; border: white 5px; padding-top: 5px">
+      <div style="background-color:rgba(255, 255, 255, 0.7); height: 700px; border-radius: 0px; margin-top: 10px; border: white 5px; padding: 5px">
             <center><h2>Recent Tracks</h2></center>
+            <center>
             <table>
               <% @recent_tracks.each do |t|%>
-                <tr><td><%= t.created_at.strftime('%l:%M %p %m/%d') %>: "<%=t.title%>" <b><%=t.artist %></b> </td></tr>
+                <tr><td><center> "<%=t.title%>" <b><%=t.artist %></b> <br /> <%= t.created_at.strftime('%l:%M %p %m/%d') %><br />  </center></td></tr>
               <% end %>
             </table>
+            </center>
   
           </div>
         </div>

@@ -143,6 +143,17 @@ def approve
 		end
 end
 
+def deny
+	@article = Article.find(params[:id])
+		if (session[:user_id])
+			@article.approval = false;
+			@article.save 
+			redirect_to root_path, notice: 'Article has been taken Offline'
+		else
+			redirect_to @article, notice: 'No Access Rights'
+		end
+end
+
 def destroy
         @article = Article.find(params[:id])   
        	if session[:user_id]
