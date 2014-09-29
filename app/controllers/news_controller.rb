@@ -5,7 +5,12 @@ class NewsController < ApplicationController
 	end
 
 	def new
-		@new = News.new
+		if(current_user.admin)
+			@new = News.new
+		else
+			redirect_to root_path
+		end
+		
 	end
 
 	def create

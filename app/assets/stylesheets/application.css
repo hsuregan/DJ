@@ -83,9 +83,9 @@ img {
     border-radius: 100%;
     width: 350px;
     height: 350px;
-    -webkit-box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.5);
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -107,13 +107,8 @@ img {
     -moz-box-shadow: 0px 0px 10.play_button:hoverpx 4px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.2);
 }
-.play_button {
-    position:relative;
-    top: 10px;
-    left: 40%;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid rgba(0,0,0,0.8);
-} 
+
+
+
+
+

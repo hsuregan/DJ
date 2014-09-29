@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
 
   @newsfeed = Article.last(5) + News.last(5) + ConcertReview.last(5) #merges two tables 
   @newsfeed = @newsfeed.sort_by {|obj| obj.updated_at}
-  @newsfeed = @newsfeed.last(5).reverse!
+  @newsfeed = @newsfeed.last(15).reverse!
 
 
 

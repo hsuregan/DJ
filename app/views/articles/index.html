@@ -53,6 +53,10 @@ a:active {
 </div>
 
 
+<div class="row" style="margin-top: 20px">
+<%= render :partial => 'advertise' %>
+</div>
+
 
 <div class="row" style="margin-top: 20px">
 <center>
@@ -165,12 +169,12 @@ a:active {
 
   <% if (session[:user_id] || x.approval == true) %>
       <a href="<%= concert_review_path(x)%>" class="ajax_link">
-        <%= image_tag(x.image, :size => "150x150")%>
+        <%= image_tag(x.image, :height => "150")%>
       </a>
 
         <br />
         <b><%=x.title %></b> <br />
-        <b> @ <%=x.location %> </b> <br />
+        <b> @ <%=x.location %> </b> 
         <em><%=x.artist.name %></em> </br>
         Critic - <%=x.author%>
       

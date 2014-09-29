@@ -102,35 +102,47 @@ body {
       <div class="row" style="margin-top: 40px">
 
         <div class="col-lg-4">
-          <div style="background-color:rgba(255, 255, 255, 0.8); text-align: right; height: 700px; border-radius: 0px; margin-top: 10px; border:  white 5px; padding-top: 5px
+          <div style="background-color:rgba(255, 255, 255, 0.8); text-align: right; height: 700px; border-radius: 0px; margin-top: 10px; border:  white 5px; padding-top: 5px; 
+
           ">
             <center><h2>What's New</h2></center>
             <% @newsfeed.each do |status| %>
 
+            <!-- IF THE STATUS is an ALBUM review -->
               <% if status.has_attribute?("album_id")%>
                 <% if status.approval == true %>
                   <h4 style="margin-right: 90px"><a href= "<%= article_path(status) %>" class="ajax_link"><%= status.album.title %></a></h4>
                   <h5 style="margin-right: 90px">Reviewed By <%= status.author %> </h5>
-                  <h6 style="margin-right: 90px"><%= status.created_at %></h6>
+                  <h6 style="margin-right: 90px"><%= status.created_at.strftime(' %m/%d') %></h6>
                   <img src = <%= status.image %> height=75px width=75px style="float: right; margin-top: -80px; margin-right: 10px;"> 
                 <% end %>
+
+              <!-- IF SHOW review -->
 
               <%elsif  status.has_attribute?("location") %>
                 <% if status.approval == true %>
                   <h4 style="margin-left: 90px; text-align: left"><a href= "<%= concert_review_path(status) %>" class="ajax_link"><%= status.title %></a></h4>
                   <h5 style="margin-left: 90px; text-align: left; ">Reviewed By <%= status.author %> </h5>
-                  <h6 style="margin-left: 90px; text-align: left; "><%= status.created_at %></h6>
+                  <h6 style="margin-left: 90px; text-align: left; "><%= status.created_at.strftime(' %m/%d') %></h6>
                   <img src = <%= status.image %> height=75px width=75px style="float: left; margin-top: -80px; margin-left: 10px;"> 
                 <% end %>
 
 
+              <!--IF PRESS RELEASE-->
               <% else %>
-            
+              <a href="<%= news_path(status) %>" class="ajax_link">
+              <center>
+              <div style=" background: -webkit-linear-gradient(top,#1eb2df, #17a7d2); color: white; box-shadow: 0px 3px 1px yellow, 0px -3px 1px yellow;
+">
+                <h4> <%= status.title %></h4>
+                              <h6><%= status.created_at.strftime(' %m/%d') %></h6>
+              </div>
+              </center>
+              </a>
 
 
 
-                <h3><a href="<%= news_path(status) %>" class="ajax_link"> <%= status.title %></a></h3>
-                              <h6><%= status.created_at %></h6>
+
               <% end %>
             <% end %>
             </ul>
@@ -156,10 +168,10 @@ function myFunction() {
 <div class="col-lg-4" style="margin-top: 30px">
 <center>
 <button style="border: none; background-color: transparent" onclick="myFunction()" class="play_border">
-<div id = "wrap" style = "height: 350px; width: 350px; margin-left: -5px; margin-top: -2px;">
+    <div id = "wrap" style = "height: 350px; width: 350px; margin-left: -5px; margin-top: -2px;">
 
-<div id = "currently_playing" style="border-style: transparent; border-radius: 100%; height: 350px; width: 350px; padding-top: 35px; background-image: url(<%= asset_path 'vinyl.png' %>); float: center; z-index: -5; position: absolute">
-</div>
+    <div id = "currently_playing" style="border-style: transparent; border-radius: 100%; height: 350px; width: 350px; padding-top: 35px; background-image: url(<%= asset_path 'vinyl.png' %>); float: center; z-index: -5; position: absolute">
+    </div>
 
 
 

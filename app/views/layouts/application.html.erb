@@ -117,13 +117,13 @@ box-shadow: 0 16px 8px -8px black;
                 </li>
 
 
-                <% if current_user != nil && current_user.email == "hsuregan@gmail.com" %>
+                <% if (current_user != nil && current_user.admin == true) || User.count == 0 %>
                   <li>
                     <a href="/users/new"><%= image_tag("create1.svg") %><p>User!</p></a>
                   </li>
                 <%end%>
 
-                <% if current_user %>
+                <% if current_user != nil && current_user.admin %>
                   <li>
                     <a href="/news/new"><%= image_tag("newspaper8.svg") %><p>Print</p></a>
                   </li>
@@ -135,10 +135,11 @@ box-shadow: 0 16px 8px -8px black;
                   </li>
                 <% end %>
 
-
+                <% if current_user == nil %>
                 <li>
                   <a href="/sessions/new" class = "ajax_link"><%= image_tag("incoming4.svg") %><p>Login</p></a>
                 </li>
+                <% end %>
 
 
                 <% if current_user %>

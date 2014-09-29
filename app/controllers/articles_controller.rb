@@ -15,6 +15,14 @@ def index
 		@concertreviews = ConcertReview.order(updated_at: :desc)
 	end
 
+	#this won't work well because article and concert reviews may not be approved at all.
+	feed = Article.last(5) + ConcertReview.last(5)
+	feed.delete_if {|obj| obj.approval != true }
+ 	feed = feed.sort_by {|obj| obj.updated_at}
+ 	feed = feed.reverse!
+ 	@feed = feed.first(4)
+
+
 
 end
 
