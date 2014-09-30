@@ -9,54 +9,68 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
+  
 
-    <div class="item active" style="height: 300px;">
+    <% article = @feed.first %>
 
-      <img src= <%= @feed.first.image %> style="height: 300px; text-align: left; margin-left: 200px">
-      <div class="carousel-caption">
+    <div class="item active" style="height: 300px; z-index: 10">
+    <center><img src= <%= @feed.first.image %> style="height: 300px; text-align: right;"></center> 
       <div class="carousel-caption" style="text-align: right">
+      <% article = @feed.first %>
       <% if @feed.first.has_attribute?("album_id") %>
-        <h1>"<%= @feed.first.album.title %>"</h1>
-        <h2><%= @feed.first.artist.name %></h2>
-        <h3>Written by <%= @feed.first.author %></h3>
-        <p><%= truncate(@feed.first.content, length: 200) %></p>
+      <a href= "<%= article_path(article) %>" class="ajax_link">
+        <h1><mark>"<%= @feed.first.album.title %>"</mark></h1>
+        <h2><mark><%= @feed.first.artist.name %></mark></h2>
+        <h3><mark>Written by <%= @feed.first.author %></mark></h3>
+        <p><mark><%= truncate(@feed.first.content, length: 200) %></mark></p>
+      </a>
+
       <% else %>
-        <h1>"<%= @feed.first.title %>"</h1>
-        <h2><%= @feed.first.artist.name %></h2>
-        <h3>Written by <%= @feed.first.author %></h3> 
-        <p><%= truncate(@feed.first.content, length: 200) %></p>
+
+      <a href= "<%= concert_review_path(article) %>" class="ajax_link">
+        <h1><mark><%= @feed.first.title %> AHH"</mark></h1>
+        <h2><mark><%= @feed.first.artist.name %></mark></h2>
+        <h3><mark>Written by <%= @feed.first.author %></mark></h3> 
+        <p><mark><%= truncate(@feed.first.content, length: 200) %></mark></p>
+      </a>
+
       <% end %>
       </div>   
       </div>
+   
+
     
-    </div>
 
     <% @feed.delete_at(0) %>
 
     <% @feed.each do |article| %>
-    <div class="item">
-      <img src=<%=article.image%> style="height: 300px; text-align: left; margin-left: 200px">
+    <div class="item" style="z-index: 10">
+      <center><img src=<%=article.image%> style="height: 300px"></center>
       <div class="carousel-caption" style="text-align: right">
       <% if article.has_attribute?("album_id") %>
-      	<h1>"<%= article.album.title %>"</h1>
-      	<h2><%= article.artist.name %></h2>
-      	<h2>Written by <%= article.author %></h2>
-        <p><%= truncate(article.content, length: 200) %></p>
-         <% else %>
-        <h1>"<%= article.title %>"</h1>
-        <h2><%= article.artist.name %></h2>
-        <h3>Written by <%= article.author %></h3> 
-        <p><%= truncate(article.content, length: 200) %></p>
+      <a href= "<%= article_path(article) %>" class="ajax_link">
+      	<h1><mark>"<%= article.album.title %>"</mark></h1>
+      	<h2><mark><%= article.artist.name %></mark></h2>
+      	<h3><mark>Written by <%= article.author %></mark></h3>
+        <p><mark><%= truncate(article.content, length: 200) %></mark></p>
+      </a>
+      <% else %>
+      <a href= "<%= concert_review_path(article) %>" class="ajax_link">
+        <h1><mark>"<%= article.title %>"</mark></h1>
+        <h2><mark><%= article.artist.name %></mark></h2>
+        <h3><mark>Written by <%= article.author %></mark></h3> 
+        <p><mark><%= truncate(article.content, length: 200) %></mark></p>
         <% end %>
+      </a>
       </div>
     </div>
     <% end %>
    </div>
   <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" style="z-index: 20">
     <span class="glyphicon glyphicon-chevron-left"></span>
   </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" style="z-index: 20">
     <span class="glyphicon glyphicon-chevron-right"></span>
   </a>
 </div>
