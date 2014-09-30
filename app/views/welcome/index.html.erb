@@ -12,7 +12,7 @@ function makeAjaxCall() {
 
 $(document).ready(function() {
 
-  setInterval(function(){ makeAjaxCall(); }, 5000);
+  setInterval(function(){ makeAjaxCall(); }, 50000);
 
    });
 
@@ -48,6 +48,11 @@ body {
     background-attachment: fixed;
 
 
+}
+
+a:link
+{
+  color: black;
 }
 </style>
 
@@ -92,17 +97,27 @@ body {
 {
   height: 250px;
 }
+
+#title
+{
+  font-family: 'Permanent Marker', cursive !important
+}
 </style>
 
 
+<link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
 
 
 
     <div class="container">
-      <div class="row" style="margin-top: 40px">
+    <div class ="row" style="color: white; font-size: 100px;">
+    <center><div id = "title">UCLA RADIO</div></center>
+        </div>
+
+      <div class="row">
 
         <div class="col-lg-4">
-          <div style="background-color:rgba(255, 255, 255, 0.8); text-align: right; height: 700px; border-radius: 0px; margin-top: 10px; border:  white 5px; padding-top: 5px;">
+          <div style="background-color:rgba(255, 255, 255, 0.8); text-align: right; height: 700px; border-radius: 10px; margin-top: 10px; border:  white 5px; padding-top: 5px;">
             <center><h2>What's New</h2></center>
             <% @newsfeed.each do |status| %>
 
@@ -110,10 +125,12 @@ body {
               <% if status.has_attribute?("album_id")%>
               <centeR>
                 <% if status.approval == true %>
-                  <h3><a href= "<%= article_path(status) %>" class="ajax_link"><%= status.album.title %></a></h3>
+                <a href= "<%= article_path(status) %>" class="ajax_link">
+                  <h3><%= status.album.title %></h3>
                   <img src = <%= status.image %> width=200px> 
                   <h5 >Reviewed By <%= status.author %> </h5>
                   <h6><%= status.created_at.strftime(' %m/%d') %></h6>
+                </a>
                 <% end %>
                 </centeR>
 
@@ -121,10 +138,12 @@ body {
               <%elsif  status.has_attribute?("location") %>
               <center>
                 <% if status.approval == true %>
-                  <h3><a href= "<%= concert_review_path(status) %>" class="ajax_link"><%= status.title %></a></h3>
+                <a href= "<%= concert_review_path(status) %>" class="ajax_link">
+                  <h3><%= status.title %></h3>
                   <img src = <%= status.image %> width=200px> 
                   <h5>Reviewed By <%= status.author %> </h5>
                   <h6><%= status.created_at.strftime(' %m/%d') %></h6>
+                </a>
                 <% end %>
                 </center>
 
@@ -203,7 +222,7 @@ function myFunction() {
 
 
       <div class="col-lg-4">
-      <div style="background-color:rgba(255, 255, 255, 0.7); height: 700px; border-radius: 0px; margin-top: 10px; border: white 5px; padding: 5px">
+      <div style="background-color:rgba(255, 255, 255, 0.7); height: 700px; border-radius: 10px; margin-top: 10px; border: white 5px; padding: 5px">
             <center><h2>Recent Tracks</h2></center>
             <center>
             <table>
